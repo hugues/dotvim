@@ -1,5 +1,5 @@
 syntax on
-color desert
+color pablo
 
 set title
 
