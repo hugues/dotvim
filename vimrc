@@ -1,5 +1,5 @@
 syntax on
-color pablo
+color zellner
 
 set title
 
