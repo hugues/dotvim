@@ -1,17 +1,26 @@
 syntax on
-color pablo
+
+autocmd BufRead *					color pablo
+autocmd BufRead *.[ch]				source ~/.vimrc.color
+autocmd BufRead /tmp/mutt-*[0-9]	color elflord
+
+set guifont=LucidaTypewriter\ 8
 
 set title
 
-set mouse=a
+set autoindent
+
+set diffopt=iwhite,filler
+
+"set mouse=a
 set mousem=extend
 set tabstop=4
 set shiftwidth=4
+set noexpandtab
 
 " Config spécifique pour les mails
 autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
-autocmd BufRead /tmp/mutt-*[0-9] color elflord
-
+  
 set guifont=LucidaTypewriter\ 8
 
 " Transparent editing of gpg encrypted files.
@@ -120,4 +129,3 @@ autocmd BufRead /tmp/mutt-*[0-9] map <ESC>m ddO<CR>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
-
