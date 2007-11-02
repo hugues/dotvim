@@ -1,34 +1,25 @@
 syntax on
-
 autocmd BufRead *					color pablo
 autocmd BufRead *.[ch]				source ~/.vimrc.color
 autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
-set guifont=LucidaTypewriter\ 8
-
 set title
-
 set autoindent
-
 set diffopt=iwhite,filler
+set guifont=LucidaTypewriter\ 8
 
 "set mouse=a
 set mousem=extend
+
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
-
-" Config spécifique pour les mails
-autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
-  
-set guifont=LucidaTypewriter\ 8
 
 " Transparent editing of gpg encrypted files.
 " Placed Public Domain by Wouter Hanegraaff <wouter@blub.net>
 " (asc support and sh -c"..." added by Osamu Aoki)
 augroup aencrypted
     au!
-
     " First make sure nothing is written to ~/.viminfo while editing
     " an encrypted file.
     autocmd BufReadPre,FileReadPre      *.asc set viminfo=
@@ -42,7 +33,6 @@ augroup aencrypted
     autocmd BufReadPost,FileReadPost    *.asc set nobin
     autocmd BufReadPost,FileReadPost    *.asc let &ch = ch_save|unlet ch_save
     autocmd BufReadPost,FileReadPost    *.asc execute ":doautocmd BufReadPost " . expand("%:r")
-
     " Convert all text to encrypted text before writing
     autocmd BufWritePre,FileWritePre    *.asc   '[,']!sh -c "gpg --default-recipient-self -ae 2>/dev/null"
     " Undo the encryption so we are back in the normal text, directly
@@ -51,7 +41,6 @@ augroup aencrypted
 augroup END
 augroup bencrypted
     au!
-
     " First make sure nothing is written to ~/.viminfo while editing
     " an encrypted file.
     autocmd BufReadPre,FileReadPre      *.gpg set viminfo=
@@ -65,7 +54,6 @@ augroup bencrypted
     autocmd BufReadPost,FileReadPost    *.gpg set nobin
     autocmd BufReadPost,FileReadPost    *.gpg let &ch = ch_save|unlet ch_save
     autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-
     " Convert all text to encrypted text before writing
     autocmd BufWritePre,FileWritePre    *.gpg   '[,']!sh -c "gpg --default-recipient-self -e 2>/dev/null"
     " Undo the encryption so we are back in the normal text, directly
@@ -73,19 +61,19 @@ augroup bencrypted
     autocmd BufWritePost,FileWritePost    *.gpg   u
 augroup END
 
-
-
-" Function: Erase_Sig_but_Your()
-" Purpose: Delete signatures at the end of e-mail replies. But keep
-" your sig intact. (if mutt (or other MUA) had added it)
-" Features: * Does not beep when no signature is found
-" * Also deletes the empty lines (even those beginning by '>')
-" preceding the signature.
-" * keep your sig intact
-" Author: Yann Kerhervé <yk@cyberion.net> based on Luc Hermitte
-" <hermitte@free.fr> work
-
-" here was my beeping macro :)
+" Function
+"  Erase_Sig_but_Your()
+"
+" Author
+"  Yann Kerhervé <yk@cyberion.net>
+"  Based on Luc Hermitte <hermitte@free.fr> work
+"
+" Purpose
+"  Deletes signatures at the end of e-mail replies. But keep
+"  your sig intact (mutt-added).
+"  Also deletes the empty lines (even those beginning by '>')
+"  preceding the signature.
+"
 function! Erase_Sig_but_Your()
 	" Search for the signature pattern : "^> -- $"
 	let lastline = line ('$')
@@ -122,10 +110,16 @@ function! Erase_Sig_but_Your()
 	endif
 endfunction
 
-autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
+" <ESC>n 	goto next empty reply-to paragraph
+" <ESC>m	opens an empty reply-paragraph at this line
+" <ESC>d	deletes everything until but the signature
+" <ESC>D	deletes everything until but the next reply-to §
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>n /^> $<CR>
-autocmd BufRead /tmp/mutt-*[0-9] map ,n /^> $<CR>
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>m ddO<CR>
+autocmd BufRead /tmp/mutt-*[0-9] map <ESC>m 'ddO<CR><CR><ESC>-I
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
+
+autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
+autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
+
