@@ -15,6 +15,8 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
+map U yyp:s/[^	]/-/g<CR>
+
 " Transparent editing of gpg encrypted files.
 " Placed Public Domain by Wouter Hanegraaff <wouter@blub.net>
 " (asc support and sh -c"..." added by Osamu Aoki)
