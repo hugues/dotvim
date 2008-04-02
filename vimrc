@@ -8,7 +8,7 @@ set autoindent
 set diffopt=iwhite,filler
 set guifont=LucidaTypewriter\ 8
 
-"set mouse=a
+set mouse=a
 set mousem=extend
 
 set tabstop=4
