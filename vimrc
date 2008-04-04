@@ -1,5 +1,5 @@
 syntax on
-autocmd BufRead *					color pablo
+autocmd BufRead *					color zellner
 autocmd BufRead *.[ch]				source ~/.vimrc.color
 autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
