@@ -1,6 +1,7 @@
 syntax on
 autocmd BufRead *					color zellner
 autocmd BufRead *.[ch]				source ~/.vimrc.color
+autocmd BufRead *.php				color pablo
 autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
 set title
