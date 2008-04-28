@@ -1,8 +1,133 @@
+"------------------------[ Magic Picard's vimrc ]--------------
+"syntax clear
 syntax on
+"Allow special Vim improvements like multiple-undo
+set nocompatible
+set bkc=no
+
+"Set improve Backspace
+set bs=2
+
+"Show the current edition mode on last line, number of column and line
+set showmode
+set ruler
+set nu
+set ls=2
+
+" Set Auto-indentation
+set ai
+set cin
+
+" Make command line X lines high
+set ch=1
+
+" Highlight search strings
+set hlsearch
+
+" Hide mouse when typing
+set mousehide
+
+" highlighting strings inside C comments
+let c_comment_strings=1
+
+" Backup dir
+set aw
+
+" compilation macros
+map <C-K>  :Domake<CR>
+map \      :cl<CR>
+imap <F9>  <Esc>:cN<CR>i
+imap <F10> <Esc>:cn<CR>i
+" set default error format
+"set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
+
+"Macros
+map <F2>   :Printcheader 
+map <F3>   :Printfheader 
+map <F4>   :Printhheader 
+map <F5>   ^i/* <C-[>$a */<C-[>
+map <F6>   ^3x$2h3x
+
+" folding 
+map <F8>   :SwitchFoldState<CR>
+map <F9>   zA
+
+"buffer moving
+map <C-B>  :bN<CR>
+
+" Load local cscope db if exists
+if filereadable( expand("$PWD/tags") )
+   set tags=tags
+elseif filereadable( expand("$ROOT/ctags.out") )
+   set tags=$ROOT/ctags.out
+elseif has("cscope")
+    if filereadable( expand("$ROOT/cscope.out") )
+      set cst
+      " cscope macros
+	  map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR> " find global definition
+      map <C-[> :cs find c <C-R>=expand("<cword>")<CR><CR> " find callers of function under cursor
+      map <C-\> :cs find t <C-R>=expand("<cword>")<CR><CR> " find assignments to variable under cursor
+	  map <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR> " find string under cursor
+	  map <C-f> :cs find f <C-R>=expand("<cword>")<CR><CR> " find file under cursor
+	  map <C-i> :cs find i <C-R>=expand("<cword>")<CR><CR> " find files including file under cursor
+	  map <C-i> :cs find I %<CR> 						   " find files including current file
+      cs add $ROOT/cscope.out $ROOT
+    endif
+endif
+
+function! SourceCodeColors()
+	" local syntax file - set colors on a per-machine basis:
+	" vim: tw=0 ts=4 sw=4
+	" Vim color file
+	" Maintainer:	Ron Aaron <ron@ronware.org>
+	" Last Change:	2003 May 02
+
+	hi clear
+	set background=dark
+	if exists("syntax_on")
+	  syntax reset
+	endif
+	let g:colors_name = "my_pablo"
+
+	highlight Comment	   ctermfg=7			   cterm=bold
+	highlight Constant	   ctermfg=4			   cterm=none
+	highlight Number	   ctermfg=4			   cterm=none
+	highlight String	                           cterm=bold
+	highlight Identifier   ctermfg=3			   cterm=bold
+	highlight Function	   ctermfg=4			   cterm=bold
+	highlight Statement    ctermfg=3			   cterm=bold
+	highlight cConditional ctermfg=3	           cterm=bold
+	highlight cStatement   ctermfg=2               cterm=bold
+	highlight cLabel       ctermfg=2               cterm=bold,underline
+	highlight Label        ctermfg=3               cterm=bold,underline
+	highlight PreProc	   ctermfg=6			   cterm=none
+	highlight Type		   ctermfg=4               cterm=underline
+	highlight Special	   ctermfg=4			   cterm=bold
+	highlight cFormat      ctermfg=6			   cterm=bold
+	highlight Error	  	                           cterm=bold
+	highlight Todo         ctermfg=0  ctermbg=3	   cterm=bold
+	highlight Directory    ctermfg=2						 
+	"highlight Normal                                         
+	highlight Search                  ctermbg=3             
+
+	highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
+	highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
+	highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
+	highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=red
+
+	highlight StatusLine ctermfg=3  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
+	hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
+	hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
+	hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
+	hi Folded				term=reverse		cterm=bold ctermbg=none  ctermfg=green
+	hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=green
+endfunction
+
 autocmd BufRead *					color zellner
-autocmd BufRead *.[ch]				source ~/.vimrc.color
+"autocmd BufRead *.[ch]				execute SourceCodeColors()
 autocmd BufRead *.php				color pablo
 autocmd BufRead /tmp/mutt-*[0-9]	color elflord
+
 
 set title
 set autoindent
@@ -17,52 +142,6 @@ set shiftwidth=4
 set noexpandtab
 
 map U yyp:s/[^	]/-/g<CR>
-
-" Transparent editing of gpg encrypted files.
-" Placed Public Domain by Wouter Hanegraaff <wouter@blub.net>
-" (asc support and sh -c"..." added by Osamu Aoki)
-augroup aencrypted
-    au!
-    " First make sure nothing is written to ~/.viminfo while editing
-    " an encrypted file.
-    autocmd BufReadPre,FileReadPre      *.asc set viminfo=
-    " We don't want a swap file, as it writes unencrypted data to disk
-    autocmd BufReadPre,FileReadPre      *.asc set noswapfile
-    " Switch to binary mode to read the encrypted file
-    autocmd BufReadPre,FileReadPre      *.asc set bin
-    autocmd BufReadPre,FileReadPre      *.asc let ch_save = &ch|set ch=2
-    autocmd BufReadPost,FileReadPost    *.asc '[,']!sh -c "gpg --decrypt 2> /dev/null"
-    " Switch to normal mode for editing
-    autocmd BufReadPost,FileReadPost    *.asc set nobin
-    autocmd BufReadPost,FileReadPost    *.asc let &ch = ch_save|unlet ch_save
-    autocmd BufReadPost,FileReadPost    *.asc execute ":doautocmd BufReadPost " . expand("%:r")
-    " Convert all text to encrypted text before writing
-    autocmd BufWritePre,FileWritePre    *.asc   '[,']!sh -c "gpg --default-recipient-self -ae 2>/dev/null"
-    " Undo the encryption so we are back in the normal text, directly
-    " after the file has been written.
-    autocmd BufWritePost,FileWritePost    *.asc   u
-augroup END
-augroup bencrypted
-    au!
-    " First make sure nothing is written to ~/.viminfo while editing
-    " an encrypted file.
-    autocmd BufReadPre,FileReadPre      *.gpg set viminfo=
-    " We don't want a swap file, as it writes unencrypted data to disk
-    autocmd BufReadPre,FileReadPre      *.gpg set noswapfile
-    " Switch to binary mode to read the encrypted file
-    autocmd BufReadPre,FileReadPre      *.gpg set bin
-    autocmd BufReadPre,FileReadPre      *.gpg let ch_save = &ch|set ch=2
-    autocmd BufReadPost,FileReadPost    *.gpg '[,']!sh -c "gpg --decrypt 2> /dev/null"
-    " Switch to normal mode for editing
-    autocmd BufReadPost,FileReadPost    *.gpg set nobin
-    autocmd BufReadPost,FileReadPost    *.gpg let &ch = ch_save|unlet ch_save
-    autocmd BufReadPost,FileReadPost    *.gpg execute ":doautocmd BufReadPost " . expand("%:r")
-    " Convert all text to encrypted text before writing
-    autocmd BufWritePre,FileWritePre    *.gpg   '[,']!sh -c "gpg --default-recipient-self -e 2>/dev/null"
-    " Undo the encryption so we are back in the normal text, directly
-    " after the file has been written.
-    autocmd BufWritePost,FileWritePost    *.gpg   u
-augroup END
 
 " Function
 "  Erase_Sig_but_Your()
@@ -125,4 +204,3 @@ autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
-
