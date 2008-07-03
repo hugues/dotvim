@@ -141,7 +141,8 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
-map U yyp:s/[^	]/-/g<CR>:noh<CR>
+map U		yyp:s/[^	]/-/g<CR>:noh<CR>
+map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
 
 " Function
 "  Erase_Sig_but_Your()
