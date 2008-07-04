@@ -56,13 +56,13 @@ map <F9>   zA
 map <C-B>  :bN<CR>
 
 " Load local cscope db if exists
-if filereadable( expand("$PWD/tags") )
+if filereadable( expand("tags") )
    set tags=tags
-elseif filereadable( expand("$ROOT/ctags.out") )
-   set tags=$ROOT/ctags.out
+elseif filereadable( expand("ctags.out") )
+   set tags=ctags.out
 elseif has("cscope")
-    if filereadable( expand("$ROOT/cscope.out") )
-      set cst
+    if filereadable( expand("cscope.out") )
+      set cscopetag
       " cscope macros
 	  map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR> " find global definition
       map <C-[> :cs find c <C-R>=expand("<cword>")<CR><CR> " find callers of function under cursor
@@ -71,7 +71,7 @@ elseif has("cscope")
 	  map <C-f> :cs find f <C-R>=expand("<cword>")<CR><CR> " find file under cursor
 	  map <C-i> :cs find i <C-R>=expand("<cword>")<CR><CR> " find files including file under cursor
 	  map <C-i> :cs find I %<CR> 						   " find files including current file
-      cs add $ROOT/cscope.out $ROOT
+      cs add cscope.out
     endif
 endif
 
