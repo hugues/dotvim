@@ -94,6 +94,7 @@ set noexpandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
+map <ESC>A	:!aspell -c %<CR>:e %<CR>
 
 " Function
 "  Erase_Sig_but_Your()
