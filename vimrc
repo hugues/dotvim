@@ -7,7 +7,6 @@ set bkc=no
 
 "Set improve Backspace
 set bs=2
-
 "Show the current edition mode on last line, number of column and line
 set showmode
 set ruler
@@ -23,6 +22,8 @@ set ch=1
 
 " Highlight search strings
 set hlsearch
+" Incremental search
+set incsearch
 
 " Hide mouse when typing
 set mousehide
@@ -41,12 +42,17 @@ imap <F10> <Esc>:cn<CR>i
 " set default error format
 "set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
 
+" remaps C-j & C-k to C-y and C-e
+noremap <C-j> <C-y>
+noremap <C-k> <C-e>
+
 "Macros
-map <F2>   :Printcheader 
-map <F3>   :Printfheader 
-map <F4>   :Printhheader 
+map <F2>   :source ~/.vim/bépo
+"map <F2>   :Printcheader 
+"map <F3>   :Printfheader 
+"map <F4>   :Printhheader 
 map <F5>   ^i/* <C-[>$a */<C-[>
-map <F6>   ^3x$2h3x
+map <F6>   ^./\/\* <C-[>3x^./ \*\/<C-[>3x
 
 " folding 
 map <F8>   :SwitchFoldState<CR>
@@ -94,7 +100,6 @@ set noexpandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
-map <ESC>A	:!aspell -c %<CR>:e %<CR>
 
 " Function
 "  Erase_Sig_but_Your()
