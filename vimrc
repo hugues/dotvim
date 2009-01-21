@@ -91,6 +91,11 @@ set autoindent
 set diffopt=iwhite,filler
 set guifont=LucidaTypewriter\ 8
 
+" mouse
+"  v -> enabled in visual mode
+"  i -> enabled in insert mode
+"  c -> enabled in command mode
+
 set mouse=a
 set mousem=extend
 
