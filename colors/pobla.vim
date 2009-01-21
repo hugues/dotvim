@@ -32,6 +32,7 @@ highlight Directory    ctermfg=2
 "highlight Normal                                         
 highlight Search                  ctermbg=3             
 
+
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
@@ -43,3 +44,7 @@ hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
 hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
 hi Folded				term=reverse		cterm=bold ctermbg=none  ctermfg=green
 hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=green
+
+hi TabLine				term=reverse,none	cterm=none ctermbg=black ctermfg=white
+hi TabLineSel			term=bold			cterm=bold ctermbg=none  ctermfg=yellow
+hi TabLineFill			term=reverse,none	cterm=none ctermbg=black ctermfg=white
