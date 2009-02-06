@@ -158,11 +158,13 @@ endfunction
 " <ESC>n 	goto next empty reply-to paragraph
 " <ESC>m	opens an empty reply-paragraph at this line
 " <ESC>d	deletes everything until but the signature
+" <ESC>w	reformats entire mail but the signature
 " <ESC>D	deletes everything until but the next reply-to §
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>n /^> $<CR>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>m 'ddO<CR><CR><ESC>-I
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
+autocmd BufRead /tmp/mutt-*[0-9] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
 
 autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
