@@ -3,22 +3,23 @@
 syntax on
 "Allow special Vim improvements like multiple-undo
 set nocompatible
-set bkc=no
+set backupcopy=no
 
 "Set improve Backspace
-set bs=2
+set backspace=2
 "Show the current edition mode on last line, number of column and line
 set showmode
 set ruler
-set nu
-set ls=2
+"Show line numbers
+set number
+set laststatus=2
 
 " Set Auto-indentation
-set ai
-set cin
+"set autoindent
+"set cindent
 
 " Make command line X lines high
-set ch=1
+set cmdheight=1
 
 " Highlight search strings
 set hlsearch
@@ -32,7 +33,7 @@ set mousehide
 let c_comment_strings=1
 
 " Backup dir
-set aw
+set autowrite
 
 " compilation macros
 map <C-K>  :Domake<CR>
