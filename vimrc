@@ -3,7 +3,8 @@
 syntax on
 "Allow special Vim improvements like multiple-undo
 set nocompatible
-set backupcopy=no
+"Seems to fuck up symlinks when set to no... [Debian bug #158657]
+set backupcopy=yes
 
 "Set improve Backspace
 set backspace=2
