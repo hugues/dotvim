@@ -83,10 +83,10 @@ elseif has("cscope")
     endif
 endif
 
-autocmd BufRead *					color pobla
+autocmd BufRead *					color pablo_red
 "autocmd BufRead *.[ch]				color pobla
 "autocmd BufRead *.php				color pablo
-autocmd BufRead /tmp/mutt-*[0-9]	color elflord
+"autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
 set title
 set autoindent
