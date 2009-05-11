@@ -36,7 +36,7 @@ highlight Title        ctermfg=3               cterm=bold
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
-highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=red
+highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=32
 
 highlight StatusLine ctermfg=3  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
 hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
