@@ -83,7 +83,7 @@ elseif has("cscope")
     endif
 endif
 
-autocmd BufRead *					color pablo_red
+autocmd BufRead *					color red
 "autocmd BufRead *.[ch]				color pobla
 "autocmd BufRead *.php				color pablo
 "autocmd BufRead /tmp/mutt-*[0-9]	color elflord
