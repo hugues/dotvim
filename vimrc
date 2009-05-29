@@ -45,8 +45,8 @@ imap <F10> <Esc>:cn<CR>i
 "set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
 
 " remaps C-j & C-k to C-y and C-e
-noremap <C-j> <C-y>
-noremap <C-k> <C-e>
+noremap <C-k> <C-y>
+noremap <C-j> <C-e>
 
 "Macros
 map <F2>   :source ~/.vim/bépo
@@ -107,6 +107,8 @@ set noexpandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
+
+map <ESC>u	:noh<CR>
 
 " Function
 "  Erase_Sig_but_Your()
