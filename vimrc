@@ -88,6 +88,10 @@ autocmd BufRead *					color red
 "autocmd BufRead *.php				color pablo
 "autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
+" F*cking trailing whitespaces
+autocmd BufRead * highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| /
+
 set title
 set autoindent
 set diffopt=iwhite,filler
@@ -109,6 +113,7 @@ map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
 
 map <ESC>u	:noh<CR>
+
 
 " Function
 "  Erase_Sig_but_Your()
@@ -173,3 +178,4 @@ autocmd BufRead /tmp/mutt-*[0-9] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,
 autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
+
