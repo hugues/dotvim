@@ -164,6 +164,17 @@ function! Erase_Sig_but_Your()
 	endif
 endfunction
 
+function! GitBlameCurrentLine()
+    let l:line  = line('.')
+    let l:file  = expand("%:t")
+    let l:wd    = expand("%:p:h")
+    let content = system("cd " . l:wd . ";git blame -L ". l:line . "," . l:line . " " . l:file . " | sed 's/).*/)/'")
+    let line = split(content, '\n')[0]
+    echohl Type | echo line | echohl None
+endfunction
+command! GitBlameCurrentLine :call GitBlameCurrentLine()
+map <ESC>b :GitBlameCurrentLine<CR>
+
 " <ESC>n 	goto next empty reply-to paragraph
 " <ESC>m	opens an empty reply-paragraph at this line
 " <ESC>d	deletes everything until but the signature
