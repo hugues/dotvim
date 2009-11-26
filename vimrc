@@ -1,4 +1,6 @@
-"------------------------[ Magic Picard's vimrc ]--------------
+
+color red
+
 "syntax clear
 syntax on
 "Allow special Vim improvements like multiple-undo
@@ -82,11 +84,6 @@ elseif has("cscope")
       cs add $ROOT/cscope.out $ROOT
     endif
 endif
-
-autocmd BufRead *					color red
-"autocmd BufRead *.[ch]				color pobla
-"autocmd BufRead *.php				color pablo
-"autocmd BufRead /tmp/mutt-*[0-9]	color elflord
 
 " F*cking trailing whitespaces
 autocmd BufRead * highlight ExtraWhitespace ctermbg=red guibg=red
