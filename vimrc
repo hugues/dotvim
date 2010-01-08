@@ -49,8 +49,10 @@ noremap <C-j> <C-e>
 map <F2>	:source ~/.vim/bépo
 
 " folding
-set foldmethod=expr
-set foldexpr=(indent(v:lnum)/&sw)+strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\"))
+set foldmethod=indent
+autocmd BufRead *.[ch] setlocal foldmethod=syntax
+autocmd BufRead /tmp/mutt-*[0-9] setlocal foldmethod=expr
+autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
@@ -181,7 +183,7 @@ autocmd BufRead /tmp/mutt-*[0-9] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
 
-autocmd BufRead /tmp/mutt-*[0-9] set textwidth=74
+autocmd BufRead /tmp/mutt-*[0-9] setlocal textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
 
