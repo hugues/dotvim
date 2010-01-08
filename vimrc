@@ -49,7 +49,8 @@ noremap <C-j> <C-e>
 map <F2>	:source ~/.vim/bépo
 
 " folding
-set foldmethod=indent
+set foldmethod=expr
+set foldexpr=(indent(v:lnum)/&sw)+strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\"))
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
