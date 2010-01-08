@@ -34,16 +34,11 @@ set mousehide
 
 " highlighting strings inside C comments
 let c_comment_strings=1
-
+ 
 " Backup dir
 set autowrite
 
-" compilation macros
-map <C-K>  :Domake<CR>
-map \      :cl<CR>
-imap <F9>  <Esc>:cN<CR>i
-imap <F10> <Esc>:cn<CR>i
-" set default error format
+" default error format
 "set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
 
 " remaps C-j & C-k to C-y and C-e
@@ -51,38 +46,33 @@ noremap <C-k> <C-y>
 noremap <C-j> <C-e>
 
 "Macros
-map <F2>   :source ~/.vim/bépo
-"map <F2>   :Printcheader 
-"map <F3>   :Printfheader 
-"map <F4>   :Printhheader 
-map <F5>   ^i/* <C-[>$a */<C-[>
-map <F6>   ^./\/\* <C-[>3x^./ \*\/<C-[>3x
+map <F2>	:source ~/.vim/bépo
 
-" folding 
+" folding
 map <F8>   :SwitchFoldState<CR>
 map <F9>   zA
 
 "buffer moving
-map <C-B>  :bN<CR>
+map <C-B>	:bN<CR>
 
 " Load local cscope db if exists
 if filereadable( expand("$PWD/tags") )
-   set tags=tags
-elseif filereadable( expand("$ROOT/ctags.out") )
-   set tags=$ROOT/ctags.out
+	set tags=tags
+elseif filereadable( expand("$PWD/ctags.out") )
+	set tags=$pwd/ctags.out
 elseif has("cscope")
-    if filereadable( expand("$ROOT/cscope.out") )
-      set cst
-      " cscope macros
-	  map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR> " find global definition
-      map <C-[> :cs find c <C-R>=expand("<cword>")<CR><CR> " find callers of function under cursor
-      map <C-\> :cs find t <C-R>=expand("<cword>")<CR><CR> " find assignments to variable under cursor
-	  map <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR> " find string under cursor
-	  map <C-f> :cs find f <C-R>=expand("<cword>")<CR><CR> " find file under cursor
-	  map <C-i> :cs find i <C-R>=expand("<cword>")<CR><CR> " find files including file under cursor
-	  map <C-i> :cs find I %<CR> 						   " find files including current file
-      cs add $ROOT/cscope.out $ROOT
-    endif
+	if filereadable( expand("$PWD/cscope.out") )
+		set cst
+		" cscope macros
+		map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR> " find global definition
+		map <C-[> :cs find c <C-R>=expand("<cword>")<CR><CR> " find callers of function under cursor
+		map <C-\> :cs find t <C-R>=expand("<cword>")<CR><CR> " find assignments to variable under cursor
+		map <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR> " find string under cursor
+		map <C-f> :cs find f <C-R>=expand("<cword>")<CR><CR> " find file under cursor
+		map <C-i> :cs find i <C-R>=expand("<cword>")<CR><CR> " find files including file under cursor
+		map <C-i> :cs find I %<CR>							 " find files including current file
+		cs add $PWD/cscope.out
+	endif
 endif
 
 " F*cking trailing whitespaces
@@ -95,9 +85,10 @@ set diffopt=iwhite,filler
 set guifont=LucidaTypewriter\ 8
 
 " mouse
-"  v -> enabled in visual mode
-"  i -> enabled in insert mode
-"  c -> enabled in command mode
+"	v -> enabled in visual mode
+"	i -> enabled in insert mode
+"	c -> enabled in command mode
+"	a -> enabled in all modes
 
 set mouse=a
 set mousem=extend
@@ -113,17 +104,17 @@ map <ESC>u	:noh<CR>
 
 
 " Function
-"  Erase_Sig_but_Your()
+"	Erase_Sig_but_Your()
 "
 " Author
-"  Yann Kerhervé <yk@cyberion.net>
-"  Based on Luc Hermitte <hermitte@free.fr> work
+"	Yann Kerhervé <yk@cyberion.net>
+"	Based on Luc Hermitte <hermitte@free.fr> work
 "
 " Purpose
-"  Deletes signatures at the end of e-mail replies. But keep
-"  your sig intact (mutt-added).
-"  Also deletes the empty lines (even those beginning by '>')
-"  preceding the signature.
+"	Deletes signatures at the end of e-mail replies. But keep
+"	your sig intact (mutt-added).
+"	Also deletes the empty lines (even those beginning by '>')
+"	preceding the signature.
 "
 function! Erase_Sig_but_Your()
 	" Search for the signature pattern : "^> -- $"
@@ -162,12 +153,12 @@ function! Erase_Sig_but_Your()
 endfunction
 
 function! GitBlameCurrentLine()
-    let l:line  = line('.')
-    let l:file  = expand("%:t")
-    let l:wd    = expand("%:p:h")
-    let content = system("cd " . l:wd . ";git blame -L ". l:line . "," . l:line . " " . l:file . " | sed 's/).*/)/'")
-    let line = split(content, '\n')[0]
-    echohl Type | echo line | echohl None
+	let l:line  = line('.')
+	let l:file  = expand("%:t")
+	let l:wd	= expand("%:p:h")
+	let content = system("cd " . l:wd . ";git blame -L ". l:line . "," . l:line . " " . l:file . " | sed 's/).*/)/'")
+	let line = split(content, '\n')[0]
+	echohl Type | echo line | echohl None
 endfunction
 command! GitBlameCurrentLine :call GitBlameCurrentLine()
 map <ESC>b :GitBlameCurrentLine<CR>
