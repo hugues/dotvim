@@ -49,8 +49,14 @@ noremap <C-j> <C-e>
 map <F2>	:source ~/.vim/bépo
 
 " folding
-map <F8>   :SwitchFoldState<CR>
-map <F9>   zA
+set foldmethod=indent
+set foldminlines=0
+set foldcolumn=5
+set foldlevel=999
+map <F7>	:setlocal foldcolumn-=1<CR>
+map <F8>	:setlocal foldcolumn+=1<CR>
+map <F9>	za
+map <F10>	zMzx<CR>
 
 "buffer moving
 map <C-B>	:bN<CR>
