@@ -26,12 +26,15 @@ highlight PreProc	   ctermfg=1			   cterm=bold,underline
 highlight Type		   ctermfg=4               cterm=none
 highlight Special	   ctermfg=1			   cterm=bold
 highlight cFormat      ctermfg=3			   cterm=bold
-highlight Error	  	                           cterm=bold
+highlight Error		                           cterm=bold
 highlight Todo         ctermfg=0  ctermbg=3	   cterm=bold
-highlight Directory    ctermfg=2						 
-"highlight Normal                                         
-highlight Search                  ctermbg=3             
+highlight Directory    ctermfg=2
+"highlight Normal
+highlight Search       ctermfg=3  ctermbg=none cterm=bold
+highlight IncSearch    ctermfg=3  ctermbg=none cterm=bold,underline
 highlight Title        ctermfg=3               cterm=bold
+
+highlight MatchParen	ctermfg=red				cterm=bold
 
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
