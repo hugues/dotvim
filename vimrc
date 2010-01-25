@@ -52,7 +52,7 @@ map <F2>	:source ~/.vim/bépo
 set foldmethod=indent
 autocmd BufRead *.[ch] setlocal foldmethod=syntax
 autocmd BufRead /tmp/mutt-*[0-9] setlocal foldmethod=expr
-autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")
+autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=(strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")))
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999

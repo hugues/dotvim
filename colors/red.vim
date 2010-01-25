@@ -34,7 +34,7 @@ highlight Search       ctermfg=3  ctermbg=none cterm=bold
 highlight IncSearch    ctermfg=3  ctermbg=none cterm=bold,underline
 highlight Title        ctermfg=3               cterm=bold
 
-highlight MatchParen	ctermfg=red				cterm=bold
+highlight MatchParen   ctermfg=1  ctermbg=none cterm=bold
 
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
