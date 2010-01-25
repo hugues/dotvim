@@ -56,10 +56,10 @@ autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=strlen(substitute(matchstr(ge
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
-map <F7>	:setlocal foldcolumn-=1<CR>
-map <F8>	:setlocal foldcolumn+=1<CR>
+map <F7>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+map <F8>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 map <F9>	za
-map <F10>	zMzx<CR>
+map <F10>	:setlocal invfoldenable<CR>
 
 "buffer moving
 map <C-B>	:bN<CR>
@@ -186,4 +186,3 @@ autocmd BufRead /tmp/mutt-*[0-9] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,
 autocmd BufRead /tmp/mutt-*[0-9] setlocal textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
-
