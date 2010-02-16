@@ -34,6 +34,8 @@ highlight Search       ctermfg=3  ctermbg=none cterm=bold
 highlight IncSearch    ctermfg=3  ctermbg=none cterm=bold,underline
 highlight Title        ctermfg=3               cterm=bold
 
+highlight Visual	   ctermfg=none ctermbg=black cterm=none
+
 highlight MatchParen   ctermfg=3  ctermbg=none cterm=bold
 
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
@@ -45,9 +47,13 @@ highlight StatusLine ctermfg=3  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000f
 hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
 hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
 hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
-hi Folded				term=reverse		cterm=bold ctermbg=none  ctermfg=green
-hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=green
+hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=red
+hi clear Folded
+hi link Folded FoldColumn
 
-hi TabLine				term=reverse,none	cterm=none ctermbg=black ctermfg=white
-hi TabLineSel			term=bold			cterm=bold ctermbg=none  ctermfg=yellow
-hi TabLineFill			term=reverse,none	cterm=none ctermbg=black ctermfg=white
+hi TabLine				term=none,underline	cterm=none,underline ctermbg=none ctermfg=white
+hi clear TabLineFill
+hi link TabLineFill TabLine
+hi TabLineSel			term=bold			ctermbg=red  ctermfg=black cterm=bold
+
+hi CursorLine			ctermbg=black cterm=none
