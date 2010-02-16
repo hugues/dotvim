@@ -168,7 +168,7 @@ function! GitBlameCurrentLine()
 	let l:wd	= expand("%:p:h")
 	let content = system("cd " . l:wd . ";git blame -L ". l:line . "," . l:line . " " . l:file . " | sed 's/).*/)/'")
 	let line = split(content, '\n')[0]
-	echohl Type | echo line | echohl None
+	echohl WarningMsg | echo line | echohl None
 endfunction
 command! GitBlameCurrentLine :call GitBlameCurrentLine()
 map <ESC>b :GitBlameCurrentLine<CR>
