@@ -198,6 +198,6 @@ endfunction
 autocmd BufAdd *.py execute SetLocalTabs(4)
 
 autocmd BufEnter * set cursorline
-autocmd BufLeave * set nocursorline
 autocmd WinEnter * set cursorline
+autocmd BufLeave * set nocursorline
 autocmd WinLeave * set nocursorline
