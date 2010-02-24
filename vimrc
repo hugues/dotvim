@@ -188,6 +188,15 @@ autocmd BufRead /tmp/mutt-*[0-9] setlocal textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
 
+function! SetLocalTabs(tabsize)
+	execute 'setlocal tabstop=' . a:tabsize
+	execute 'setlocal softtabstop=' . a:tabsize
+	execute 'setlocal shiftwidth=' . a:tabsize
+	setlocal smarttab
+	setlocal expandtab
+endfunction
+autocmd BufAdd *.py execute SetLocalTabs(4)
+
 autocmd BufEnter * set cursorline
 autocmd BufLeave * set nocursorline
 autocmd WinEnter * set cursorline
