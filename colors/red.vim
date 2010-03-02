@@ -19,13 +19,15 @@ highlight Identifier   ctermfg=1			   cterm=none
 highlight Function	   ctermfg=1			   cterm=bold
 highlight Statement    ctermfg=1			   cterm=none
 highlight cConditional ctermfg=1	           cterm=bold
-highlight cStatement   ctermfg=2               cterm=bold
-highlight cLabel       ctermfg=2               cterm=bold,underline
+highlight clear cStatement
+highlight link cStatement Statement
 highlight Label        ctermfg=1               cterm=bold,underline
+highlight clear cLabel
+highlight link cLabel Label
 highlight PreProc	   ctermfg=1			   cterm=bold,underline
 highlight Type		   ctermfg=4               cterm=none
 highlight Special	   ctermfg=1			   cterm=bold
-highlight cFormat      ctermfg=3			   cterm=bold
+highlight cFormat      ctermfg=1			   cterm=bold
 highlight Error		                           cterm=bold
 highlight Todo         ctermfg=0  ctermbg=3	   cterm=bold
 highlight Directory    ctermfg=2
