@@ -179,15 +179,15 @@ map <ESC>b :GitBlameCurrentLine<CR>
 " <ESC>d	deletes everything until but the signature
 " <ESC>w	reformats entire mail but the signature
 " <ESC>D	deletes everything until but the next reply-to §
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>n /^> $<CR>
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>m 'ddO<CR><CR><ESC>-I
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>d ^d/^-- $<CR>O<ESC>
-autocmd BufRead /tmp/mutt-*[0-9] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
+autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>n /^> $<CR>
+autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>m 'ddO<CR><CR><ESC>-I
+autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
+autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>d ^d/^-- $<CR>O<ESC>
+autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
 
-autocmd BufRead /tmp/mutt-*[0-9] setlocal textwidth=74
-autocmd BufRead /tmp/mutt-*[0-9] execute Erase_Sig_but_Your()
-autocmd BufRead /tmp/mutt-*[0-9] :normal ,n
+autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal textwidth=74
+autocmd BufRead /tmp/mutt-*[0-9a-f] execute Erase_Sig_but_Your()
+autocmd BufRead /tmp/mutt-*[0-9a-f] :normal ,n
 
 function! SetLocalTabs(tabsize)
 	execute 'setlocal tabstop=' . a:tabsize
