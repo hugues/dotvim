@@ -34,14 +34,14 @@ set mousehide
 
 " highlighting strings inside C comments
 let c_comment_strings=1
- 
+
 " Backup dir
 set autowrite
 
 " default error format
 "set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
 
-" remaps C-j & C-k to C-y and C-e
+" remaps C-j & C-k to C-y and C-e (buffer up/down line-by-line)
 noremap <C-k> <C-y>
 noremap <C-j> <C-e>
 
