@@ -113,6 +113,9 @@ map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
 
 map <ESC>u	:noh<CR>
 
+runtime! ftplugin/man.vim
+map K		:Man <C-R>=expand("<cword>")<CR><CR>
+
 
 " Function
 "	Erase_Sig_but_Your()
