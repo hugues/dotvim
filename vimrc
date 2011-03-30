@@ -65,6 +65,15 @@ map <F10>	:setlocal invfoldenable<CR>
 "buffer moving
 map <C-B>	:bN<CR>
 
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\   exe "normal g`\"" |
+	\   exe "normal zz" |
+	\ endif
+
 " Load local cscope db if exists
 if filereadable( expand("$PWD/tags") )
 	set tags=tags
