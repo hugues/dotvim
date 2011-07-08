@@ -197,10 +197,12 @@ autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>d ^d/^-- $<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
 
-autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal spell spelllang=fr
+autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal spell spelllang=fr,en,de
 autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal textwidth=74
 autocmd BufRead /tmp/mutt-*[0-9a-f] execute Erase_Sig_but_Your()
 autocmd BufRead /tmp/mutt-*[0-9a-f] :normal ,n
+
+map zc	z=1<CR><CR>
 
 function! SetLocalTabs(tabsize)
 	execute 'setlocal tabstop=' . a:tabsize
