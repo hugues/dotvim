@@ -59,3 +59,8 @@ hi link TabLineFill TabLine
 hi TabLineSel			term=bold			ctermbg=red  ctermfg=black cterm=bold
 
 hi CursorLine			ctermbg=black cterm=none
+
+hi SpellBad        term=reverse cterm=bold ctermbg=red ctermfg=red gui=undercurl guisp=Red
+hi SpellCap        term=reverse ctermbg=none cterm=none ctermfg=red gui=undercurl guisp=Blue
+hi SpellRare       term=reverse cterm=bold ctermfg=magenta gui=undercurl guisp=Magenta
+hi SpellLocal      term=underline cterm=bold ctermfg=green gui=undercurl guisp=Cyan
