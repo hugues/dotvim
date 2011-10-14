@@ -219,3 +219,27 @@ autocmd BufEnter * set cursorline
 autocmd WinEnter * set cursorline
 autocmd BufLeave * set nocursorline
 autocmd WinLeave * set nocursorline
+
+
+" footnotes
+inoremap ,f <Esc>:call VimFootnotes()<CR>
+inoremap ,r <Esc>:exe b:pos<CR>
+
+function! VimFootnotes()
+  if exists("b:vimfootnotenumber")
+    let b:vimfootnotenumber = b:vimfootnotenumber + 1
+    let cr = ""
+  else
+    let b:vimfootnotenumber = 0
+    let cr = "\<CR>"
+  endif
+  let b:pos = line('.').' | normal! '.virtcol('.').'|'.'4l'
+  exe "normal a[".b:vimfootnotenumber."]\<Esc>G"
+  if search("-- $", "b")
+    exe "normal O".cr."[".b:vimfootnotenumber."] "
+  else
+    exe "normal o".cr."[".b:vimfootnotenumber."] "
+  endif
+  startinsert!
+endfunction
+
