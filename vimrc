@@ -118,7 +118,10 @@ set noexpandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map Y		yyp:s/[^	]/=/g<CR>:noh<CR>
-map <ESC>Q	v/$\n\n<CR>J:.!fmt -tcw78<CR>:noh<CR>
+
+" Reformatting is done using 'gq<motion>'
+map <ESC>Q	:s/^/> /<CR>
+map <ESC>q	:s/^[ ]*>[ ]*//<CR>
 
 map <ESC>u	:noh<CR>
 
@@ -188,11 +191,10 @@ map <ESC>b :GitBlameCurrentLine<CR>
 
 " <ESC>n 	goto next empty reply-to paragraph
 " <ESC>m	opens an empty reply-paragraph at this line
-" <ESC>d	deletes everything until but the signature
+" <ESC>d	deletes everything from there onto the signature
 " <ESC>w	reformats entire mail but the signature
-" <ESC>D	deletes everything until but the next reply-to §
+" <ESC>D	deletes all the quote above
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>n /^> $<CR>
-autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>m 'ddO<CR><CR><ESC>-I
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>d ^d/^-- $<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
