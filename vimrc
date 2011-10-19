@@ -210,11 +210,11 @@ endfunction
 command! GitBlameCurrentLine :call GitBlameCurrentLine()
 map <ESC>b :GitBlameCurrentLine<CR>
 
-" <ESC>n 	goto next empty reply-to paragraph
+" <ESC>n	goto next empty reply-to paragraph
 " <ESC>m	opens an empty reply-paragraph at this line
-" <ESC>d	deletes everything from there onto the signature
+" <ESC>d	deletes everything until but the signature
 " <ESC>w	reformats entire mail but the signature
-" <ESC>D	deletes all the quote above
+" <ESC>D	deletes everything until but the previous reply-to §
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>n /^> $<CR>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
 autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>d ^d/^-- $<CR>O<ESC>
