@@ -81,6 +81,21 @@ autocmd BufReadPost *
 	\   exe "normal zz" |
 	\ endif
 
+function! CscopeSearch(csearch)
+
+	let @/=a:csearch
+	set hls
+
+	let l:prompt =  "Rechercher '".a:csearch."' avec cscope [cdefgist] : "
+
+	echo l:prompt
+	let l:ctype=nr2char(getchar())
+	redraw
+	echo l:prompt.l:ctype." "
+
+	return 'set hls | cscope find '.l:ctype.' '.a:csearch
+endfunction
+
 " Load local cscope db if exists
 if filereadable( expand("$PWD/tags") )
 	set tags=tags
@@ -89,17 +104,16 @@ elseif filereadable( expand("$PWD/ctags.out") )
 elseif has("cscope")
 	if filereadable( expand("$PWD/cscope.out") )
 		set cst
+		cscope add $PWD/cscope.out
+
 		" cscope macros
-		map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR> " find global definition
-		map <C-[> :cs find c <C-R>=expand("<cword>")<CR><CR> " find callers of function under cursor
-		map <C-\> :cs find t <C-R>=expand("<cword>")<CR><CR> " find assignments to variable under cursor
-		map <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR> " find string under cursor
-		map <C-f> :cs find f <C-R>=expand("<cword>")<CR><CR> " find file under cursor
-		map <C-i> :cs find i <C-R>=expand("<cword>")<CR><CR> " find files including file under cursor
-		map <C-i> :cs find I %<CR>							 " find files including current file
-		cs add $PWD/cscope.out
+		nmap <ESC>c :execute CscopeSearch(expand("<cword>"))<CR>
+		nmap <ESC>f :execute CscopeSearch(expand("<cfile>"))<CR>
+		nmap <ESC>% :execute CscopeSearch(expand("%:t"))<CR>
+		nmap <ESC>r :execute CscopeSearch(input("Rechercher : "))<CR>
 	endif
 endif
+
 
 " F*cking trailing whitespaces
 autocmd BufRead * highlight ExtraWhitespace ctermbg=red guibg=red
