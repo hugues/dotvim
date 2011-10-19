@@ -46,7 +46,7 @@ noremap <C-k> <C-y>
 noremap <C-j> <C-e>
 
 "Macros
-map <F2>	:source ~/.vim/bépo
+nmap <F2>	:source ~/.vim/bépo
 
 " folding
 set foldmethod=indent
@@ -63,7 +63,7 @@ map <F9>	za
 map <F10>	:setlocal invfoldenable<CR>
 
 "buffer moving
-map <C-B>	:bN<CR>
+nmap <C-B>	:bN<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -123,7 +123,7 @@ map Y		yyp:s/[^	]/=/g<CR>:noh<CR>
 map <ESC>Q	:s/^/> /<CR>
 map <ESC>q	:s/^[ ]*>[ ]*//<CR>
 
-map <ESC>u	:noh<CR>
+map <silent> <ESC>u	:noh<CR>
 
 runtime! ftplugin/man.vim
 map K		:Man <C-R>=expand("<cword>")<CR><CR>
