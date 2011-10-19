@@ -57,10 +57,17 @@ autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=(strlen(substitute(matchstr(g
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
-map <F7>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-map <F8>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-map <F9>	za
-map <F10>	:setlocal invfoldenable<CR>
+nmap <F5>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+nmap <F6>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+" close all
+" open all
+nmap <F7>	zM
+nmap <F8>	zR
+" open/close recursive under cursor
+" open/close under cursor
+nmap <F9>	zA
+nmap <F10>	za
+nmap <F11>	:setlocal invfoldenable<CR>
 
 "buffer moving
 nmap <C-B>	:bN<CR>
