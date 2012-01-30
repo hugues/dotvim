@@ -11,41 +11,41 @@ if exists("syntax_on")
 endif
 let g:colors_name = "red"
 
-highlight Comment	   ctermfg=7			   cterm=bold
-highlight Constant	   ctermfg=4			   cterm=none
-highlight Number	   ctermfg=4			   cterm=none
-highlight String	   ctermfg=1 ctermbg=0     cterm=none
-highlight Identifier   ctermfg=1			   cterm=none
-highlight Function	   ctermfg=1			   cterm=bold
-highlight Statement    ctermfg=1			   cterm=none
-highlight cConditional ctermfg=1	           cterm=bold
+highlight Comment	   ctermfg=white			   cterm=bold
+highlight Constant	   ctermfg=blue			   cterm=none
+highlight Number	   ctermfg=blue			   cterm=none
+highlight String	   ctermfg=red ctermbg=0     cterm=none
+highlight Identifier   ctermfg=red			   cterm=none
+highlight Function	   ctermfg=red			   cterm=bold
+highlight Statement    ctermfg=red			   cterm=none
+highlight cConditional ctermfg=red	           cterm=bold
 highlight clear cStatement
 highlight link cStatement Statement
-highlight Label        ctermfg=1               cterm=bold,underline
+highlight Label        ctermfg=red               cterm=bold,underline
 highlight clear cLabel
 highlight link cLabel Label
-highlight PreProc	   ctermfg=1			   cterm=bold,underline
-highlight Type		   ctermfg=4               cterm=none
-highlight Special	   ctermfg=1			   cterm=bold
-highlight cFormat      ctermfg=1			   cterm=bold
+highlight PreProc	   ctermfg=red			   cterm=bold,underline
+highlight Type		   ctermfg=blue               cterm=none
+highlight Special	   ctermfg=red			   cterm=bold
+highlight cFormat      ctermfg=red			   cterm=bold
 highlight Error		                           cterm=bold
-highlight Todo         ctermfg=0  ctermbg=3	   cterm=bold
-highlight Directory    ctermfg=2
+highlight Todo         ctermfg=black  ctermbg=yellow	   cterm=bold
+highlight Directory    ctermfg=green
 "highlight Normal
-highlight Search       ctermfg=3  ctermbg=none cterm=bold
-highlight IncSearch    ctermfg=3  ctermbg=none cterm=bold,underline
-highlight Title        ctermfg=3               cterm=bold
+highlight Search       ctermfg=yellow  ctermbg=none cterm=bold
+highlight IncSearch    ctermfg=yellow  ctermbg=none cterm=bold,underline
+highlight Title        ctermfg=yellow               cterm=bold
 
 highlight Visual	   ctermfg=none ctermbg=black cterm=none
 
-highlight MatchParen   ctermfg=3  ctermbg=none cterm=bold
+highlight MatchParen   ctermfg=yellow  ctermbg=none cterm=bold
 
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
-highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=32
+highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=none
 
-highlight StatusLine ctermfg=3  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
+highlight StatusLine ctermfg=yellow  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
 hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
 hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
 hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black

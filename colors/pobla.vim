@@ -11,40 +11,56 @@ if exists("syntax_on")
 endif
 let g:colors_name = "my_pablo"
 
-highlight Comment	   ctermfg=7			   cterm=bold
-highlight Constant	   ctermfg=4			   cterm=none
-highlight Number	   ctermfg=4			   cterm=none
-highlight String	                           cterm=bold
-highlight Identifier   ctermfg=3			   cterm=bold
-highlight Function	   ctermfg=4			   cterm=bold
-highlight Statement    ctermfg=3			   cterm=bold
-highlight cConditional ctermfg=3	           cterm=bold
-highlight cStatement   ctermfg=2               cterm=bold
-highlight cLabel       ctermfg=2               cterm=bold,underline
-highlight Label        ctermfg=3               cterm=bold,underline
-highlight PreProc	   ctermfg=6			   cterm=none
-highlight Type		   ctermfg=4               cterm=underline
-highlight Special	   ctermfg=4			   cterm=bold
-highlight cFormat      ctermfg=6			   cterm=bold
+highlight Comment	   ctermfg=white			   cterm=bold
+highlight Constant	   ctermfg=blue			   cterm=none
+highlight Number	   ctermfg=blue			   cterm=none
+highlight String	   ctermfg=yellow ctermbg=0     cterm=none
+highlight Identifier   ctermfg=green			   cterm=none
+highlight Function	   ctermfg=yellow			   cterm=bold
+highlight Statement    ctermfg=green			   cterm=bold
+highlight cConditional ctermfg=yellow	           cterm=bold
+highlight clear cStatement
+highlight link cStatement Statement
+highlight Label        ctermfg=yellow               cterm=bold,underline
+highlight clear cLabel
+highlight link cLabel Label
+highlight PreProc	   ctermfg=yellow			   cterm=bold,underline
+highlight Type		   ctermfg=cyan               cterm=none
+highlight Special	   ctermfg=yellow			   cterm=bold
+highlight cFormat      ctermfg=yellow			   cterm=bold
 highlight Error		                           cterm=bold
-highlight Todo         ctermfg=0  ctermbg=3	   cterm=bold
-highlight Directory    ctermfg=2
+highlight Todo         ctermfg=black  ctermbg=yellow	   cterm=bold
+highlight Directory    ctermfg=green
 "highlight Normal
-highlight Search                  ctermbg=3
+highlight Search       ctermfg=blue  ctermbg=none cterm=bold
+highlight IncSearch    ctermfg=blue  ctermbg=none cterm=bold,underline
+highlight Title        ctermfg=yellow               cterm=bold
 
+highlight Visual	   ctermfg=none ctermbg=black cterm=none
+
+highlight MatchParen   ctermfg=yellow  ctermbg=none cterm=bold
 
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
-highlight DiffText		term=underline	cterm=none	ctermfg=none	ctermbg=red
+highlight DiffText		term=underline	cterm=bold	ctermfg=red	ctermbg=none
 
-highlight StatusLine ctermfg=3  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
+highlight StatusLine ctermfg=yellow  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
 hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
 hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
 hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
-hi Folded				term=reverse		cterm=bold ctermbg=none  ctermfg=green
-hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=green
+hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=red
+hi clear Folded
+hi link Folded FoldColumn
 
-hi TabLine				term=reverse,none	cterm=none ctermbg=black ctermfg=white
-hi TabLineSel			term=bold			cterm=bold ctermbg=none  ctermfg=yellow
-hi TabLineFill			term=reverse,none	cterm=none ctermbg=black ctermfg=white
+hi TabLine				term=none,underline	cterm=none,underline ctermbg=none ctermfg=white
+hi clear TabLineFill
+hi link TabLineFill TabLine
+hi TabLineSel			term=bold			ctermbg=yellow  ctermfg=black cterm=bold
+
+hi CursorLine			ctermbg=black cterm=none
+
+hi SpellBad        term=reverse cterm=bold ctermbg=yellow ctermfg=red gui=undercurl guisp=Red
+hi SpellCap        term=reverse ctermbg=none cterm=none ctermfg=red gui=undercurl guisp=Blue
+hi SpellRare       term=reverse cterm=bold ctermfg=magenta gui=undercurl guisp=Magenta
+hi SpellLocal      term=underline cterm=bold ctermfg=cyan gui=undercurl guisp=Cyan
