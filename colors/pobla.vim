@@ -52,6 +52,7 @@ hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
 hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=red
 hi clear Folded
 hi link Folded FoldColumn
+hi LineNR				term=reverse,bold	ctermbg=none ctermfg=black cterm=bold
 
 hi TabLine				term=none,underline	cterm=none,underline ctermbg=none ctermfg=white
 hi clear TabLineFill
