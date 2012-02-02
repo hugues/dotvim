@@ -1,5 +1,5 @@
 
-color red
+color default
 
 "syntax clear
 syntax on
