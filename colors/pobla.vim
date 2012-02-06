@@ -9,7 +9,7 @@ set background=dark
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = "my_pablo"
+let g:colors_name = "pobla"
 
 highlight Comment	   ctermfg=white			   cterm=bold
 highlight Constant	   ctermfg=blue			   cterm=none
@@ -43,7 +43,7 @@ highlight MatchParen   ctermfg=yellow  ctermbg=none cterm=bold
 highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
-highlight DiffText		term=underline	cterm=bold	ctermfg=red	ctermbg=none
+highlight DiffText		term=underline	cterm=bold	ctermfg=red		ctermbg=none
 
 highlight StatusLine ctermfg=yellow  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
 hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
