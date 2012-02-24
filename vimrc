@@ -157,7 +157,7 @@ set mousem=extend
 
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map Y		yyp:s/[^	]/=/g<CR>:noh<CR>
