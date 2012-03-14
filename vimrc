@@ -17,6 +17,8 @@ set ruler
 set number
 set laststatus=2
 
+set wildmode=longest,list,full
+
 " Set Auto-indentation
 "set autoindent
 "set cindent
@@ -104,7 +106,9 @@ elseif filereadable( expand("$PWD/ctags.out") )
 elseif has("cscope")
 	if filereadable( expand("$PWD/cscope.out") )
 		set cst
-		cscope add $PWD/cscope.out
+
+        " Automagically done...
+		"cscope add $PWD/cscope.out
 
 		" cscope macros
 		nmap <ESC>c :execute CscopeSearch(expand("<cword>"))<CR>
