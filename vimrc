@@ -17,6 +17,8 @@ set ruler
 set number
 set laststatus=2
 
+set wildmode=longest,list,full
+
 " Set Auto-indentation
 "set autoindent
 "set cindent
