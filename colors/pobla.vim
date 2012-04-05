@@ -15,7 +15,7 @@ highlight Comment	   ctermfg=white			   cterm=bold
 highlight Constant	   ctermfg=blue			   cterm=none
 highlight Number	   ctermfg=blue			   cterm=none
 highlight String	   ctermfg=yellow ctermbg=0     cterm=none
-highlight Identifier   ctermfg=green			   cterm=none
+highlight Identifier   ctermfg=cyan			   cterm=none
 highlight Function	   ctermfg=yellow			   cterm=bold
 highlight Statement    ctermfg=green			   cterm=bold
 highlight cConditional ctermfg=yellow	           cterm=bold
@@ -25,7 +25,7 @@ highlight Label        ctermfg=yellow               cterm=bold,underline
 highlight clear cLabel
 highlight link cLabel Label
 highlight PreProc	   ctermfg=yellow			   cterm=bold,underline
-highlight Type		   ctermfg=cyan               cterm=none
+highlight Type		   ctermfg=cyan               cterm=bold
 highlight Special	   ctermfg=yellow			   cterm=bold
 highlight cFormat      ctermfg=yellow			   cterm=bold
 highlight Error		                           cterm=bold
