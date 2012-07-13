@@ -72,7 +72,8 @@ nmap <F10>	za
 nmap <F11>	:setlocal invfoldenable<CR>
 
 "buffer moving
-nmap <C-B>	:bN<CR>
+nmap <C-L>	:bn<CR>
+nmap <C-H>	:bN<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
