@@ -119,9 +119,11 @@ elseif has("cscope")
 endif
 
 
-" F*cking trailing whitespaces
-autocmd BufRead * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| /
+" F*cking whitespaces
+autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
+autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
+
+set list listchars=tab:↓·,precedes:‥,extends:‥
 
 set title
 set autoindent

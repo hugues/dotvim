@@ -66,3 +66,7 @@ hi SpellRare       term=reverse cterm=bold ctermfg=magenta gui=undercurl guisp=M
 hi SpellLocal      term=underline cterm=bold ctermfg=green gui=undercurl guisp=Cyan
 
 hi WildMenu        term=reverse cterm=bold ctermbg=black ctermfg=yellow
+
+highlight NonText      ctermfg=blue cterm=bold
+highlight SpecialKey   ctermfg=black cterm=none
+

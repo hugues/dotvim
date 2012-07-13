@@ -65,3 +65,7 @@ hi SpellBad        term=reverse cterm=bold ctermbg=yellow ctermfg=red gui=underc
 hi SpellCap        term=reverse ctermbg=none cterm=none ctermfg=red gui=undercurl guisp=Blue
 hi SpellRare       term=reverse cterm=bold ctermfg=magenta gui=undercurl guisp=Magenta
 hi SpellLocal      term=underline cterm=bold ctermfg=cyan gui=undercurl guisp=Cyan
+
+highlight NonText      ctermfg=black cterm=bold
+highlight SpecialKey   ctermfg=black cterm=none
+
