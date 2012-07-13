@@ -72,7 +72,8 @@ nmap <F10>	za
 nmap <F11>	:setlocal invfoldenable<CR>
 
 "buffer moving
-nmap <C-B>	:bN<CR>
+nmap <C-L>	:bn<CR>
+nmap <C-H>	:bN<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -119,9 +120,11 @@ elseif has("cscope")
 endif
 
 
-" F*cking trailing whitespaces
-autocmd BufRead * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| /
+" F*cking whitespaces
+autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
+autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
+
+set list listchars=tab:↓·,precedes:‥,extends:‥
 
 set title
 set autoindent
