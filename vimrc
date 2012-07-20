@@ -56,6 +56,11 @@ set foldignore=
 autocmd BufRead *.[ch] setlocal foldmethod=syntax
 autocmd BufRead /tmp/mutt-*[0-9] setlocal foldmethod=expr
 autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=(strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")))
+" Highlights columns 77-80 and 81+
+autocmd BufRead /tmp/mutt-*[0-9] let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+autocmd BufRead /tmp/mutt-*[0-9] let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+
+
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
