@@ -30,6 +30,8 @@ set cmdheight=1
 set hlsearch
 " Incremental search
 set incsearch
+" No wrap search
+set nowrapscan
 
 " Hide mouse when typing
 set mousehide
@@ -46,6 +48,10 @@ set autowrite
 " remaps C-j & C-k to C-y and C-e (buffer up/down line-by-line)
 noremap <C-k> <C-y>
 noremap <C-j> <C-e>
+
+set nowrap
+noremap <C-l> z2l
+noremap <C-h> z2h
 
 "Macros
 nmap <F2>	:source ~/.vim/bépo
@@ -64,6 +70,9 @@ autocmd BufRead /tmp/mutt-*[0-9] let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
+
+nmap <F1>   /^\(<<<<<<<\\|=======\\|>>>>>>>\)<CR>
+
 nmap <F5>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 nmap <F6>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 " close all
@@ -77,8 +86,8 @@ nmap <F10>	za
 nmap <F11>	:setlocal invfoldenable<CR>
 
 "buffer moving
-nmap <C-L>	:bn<CR>
-nmap <C-H>	:bN<CR>
+nmap <ESC>l	:bn<CR>
+nmap <ESC>h	:bN<CR>
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -127,9 +136,10 @@ endif
 
 " F*cking whitespaces
 autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
-autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
+autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+\|\t\zs \+/
 
-set list listchars=tab:↓·,precedes:‥,extends:‥
+set list listchars=tab:│ ,precedes:‥,extends:‥
+nmap <F3>	:set invlist<CR>
 
 set title
 set autoindent
