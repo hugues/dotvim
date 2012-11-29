@@ -1,3 +1,5 @@
+" vi: syn=vim
+
 " {W} -> [É]
 " ——————————
 " On remappe W sur É :
@@ -32,21 +34,21 @@ noremap zt zk
 
 " {HJKL} <- [CTSR]
 " ————————————————
-" {J} = « Jusqu'à »            (j = suivant, J = précédant)
+" {J} = « Jusqu'à »            (j = suivant, J = précédent)
 noremap j t
 noremap J T
-" {L} = « Change »             (h = bloc, H = jusqu'à la fin de ligne)
-noremap l c
-noremap L C
-" {H} = « Remplace »           (l = caractère, L = texte)
+" {K} = « Change (kill) »      (k = bloc, K = jusqu'à la fin de ligne)
+noremap k c
+noremap K C
+" {H} = « Remplace »           (h = caractère, H = texte)
 noremap h r
 noremap H R
-" {K} = « Substitue »          (k = caractère, K = ligne)
-noremap k s
-noremap K S
+" {L} = « Substitue »          (l = caractère, L = ligne)
+noremap l s
+noremap L S
 " Corollaire : correction orthographique
-noremap ]k ]s
-noremap [k [s
+noremap ]l ]s
+noremap [L [s
 
 " Désambiguation de {g}
 " —————————————————————
@@ -65,29 +67,30 @@ noremap g" g0
 " <> en direct
 " ————————————
 noremap « <
+noremap » >
 
 " Chiffres en accès direct
 " ————————————————————————
-noremap " 1
-noremap 1 "
-noremap « 2
-noremap 2 <
-noremap » 3
-noremap 3 >
-noremap ( 4
-noremap 4 (
-noremap ) 5
-noremap 5 )
-noremap @ 6
-noremap 6 @
-noremap + 7
-noremap 7 +
-noremap - 8
-noremap 8 -
-noremap / 9
-noremap 9 /
-noremap * 0
-noremap 0 *
+"noremap " 1
+"noremap 1 "
+"noremap « 2
+"noremap 2 <
+"noremap » 3
+"noremap 3 >
+"noremap ( 4
+"noremap 4 (
+"noremap ) 5
+"noremap 5 )
+"noremap @ 6
+"noremap 6 @
+"noremap + 7
+"noremap 7 +
+"noremap - 8
+"noremap 8 -
+"noremap / 9
+"noremap 9 /
+"noremap * 0
+"noremap 0 *
 
 " colorise les nbsp
 highlight NbSp ctermbg=lightgray guibg=lightred
