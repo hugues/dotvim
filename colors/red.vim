@@ -45,13 +45,13 @@ highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
 highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
 highlight DiffText		term=underline	cterm=bold	ctermfg=green	ctermbg=none
 
-highlight StatusLine ctermfg=yellow  ctermbg=0  cterm=none guifg=#ffff00 guibg=#0000ff gui=none
-hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow
+hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow  guifg=#ffff00 guibg=#0000ff gui=none
 hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
 hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
 hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=red
 hi clear Folded
 hi link Folded FoldColumn
+hi LineNR				term=reverse,bold	ctermbg=none ctermfg=yellow cterm=bold
 
 hi TabLine				term=none,underline	cterm=none,underline ctermbg=none ctermfg=white
 hi clear TabLineFill
