@@ -67,6 +67,7 @@ autocmd BufRead /tmp/mutt-*[0-9] let w:m1=matchadd('Search', '\%<81v.\%>77v', -1
 autocmd BufRead /tmp/mutt-*[0-9] let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 
+
 set foldminlines=0
 set foldcolumn=5
 set foldlevel=999
@@ -157,7 +158,7 @@ set mousem=extend
 
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 map U		yyp:s/[^	]/-/g<CR>:noh<CR>
 map Y		yyp:s/[^	]/=/g<CR>:noh<CR>
