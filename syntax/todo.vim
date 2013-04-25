@@ -11,24 +11,28 @@ endif
 setlocal iskeyword+=-
 syntax case ignore
 
-syntax region todoTitle    start="^\(\w\|=\).*"  end="$"me=s-1
-syntax region todoTask0    start="^\s*[\*]"  end="$"me=s-1 contains=todoInfo,todoTodo
-syntax region todoTask1    start="^\s*[+]" end="$"me=s-1   contains=todoInfo,todoTodo
-syntax region todoTask2    start="^\s*[→]" end="$"me=s-1   contains=todoInfo,todoTodo
-syntax region todoTask3    start="^\s*[_]" end="$"me=s-1   contains=todoInfo,todoTodo
-syntax region todoDone     start="^[-]" end="$"me=s-1      contains=todoInfo,todoTodo
-syntax region todoTaskDone start="^\s\+[-]" end="$"me=s-1  contains=todoInfo,todoTodo
-syntax region todoTodo     start="(" end=")"               contained
-syntax region todoInfo     start="\[" end="\]"             contained
+syn match  Todo      /([^)]*)/                    containedin=ALLBUT,todoDone,todoTaskDone
+syn match  String    /\[[^\]]*\]/                 containedin=ALL
 
-highlight      todoTitle    cterm=bold
-highlight link todoTask0    Title
-highlight link todoTask1    Directory
-highlight link todoTask2    Constant
-highlight link todoTask3    Normal
-highlight link todoDone     DiffAdd
-highlight link todoTaskDone DiffDelete
-highlight link todoTodo     Todo
-highlight link todoInfo     String
+syn region todoTitle     start=/^\z\(\s*\)\*/ end=/$/
+syn region todoTask1     start=/^\z\(\s*\)+/  end=/$/
+syn region todoTask2     start=/^\z\(\s*\)→/  end=/$/
+syn region todoTask3     start=/^\z\(\s*\):/  end=/$/
+syn region todoDone      start=/^-/  end=/^\(\S\|$\)/me=s-1 contains=todoTaskDone
+syn region todoTaskDone  start=/^\z\(\s\+\)-/ skip=/^\z1\s\+/ end=/^/me=s-1
+
+syn match  rtTicket /\#\d\+/                     containedin=ALLBUT,todoDone,todoTaskDone
+
+syn region Comment start=/^\%^\|=/ end=/=$/
+
+hi link todoTitle Title
+hi link todoTask1 DiffText
+hi link todoTask2 Number
+hi link todoTask3 Statement
+
+hi link rtTicket SpellRare
+
+hi link todoDone     NonText
+hi link todoTaskDone NonText
 
 let b:current_syntax="todo"
