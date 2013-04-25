@@ -11,44 +11,44 @@ if exists("syntax_on")
 endif
 let g:colors_name = "red"
 
-highlight Comment	   ctermfg=white			   cterm=bold
-highlight Constant	   ctermfg=blue			   cterm=none
-highlight Number	   ctermfg=blue			   cterm=none
-highlight String	   ctermfg=red ctermbg=0     cterm=none
-highlight Identifier   ctermfg=red			   cterm=none
-highlight Function	   ctermfg=red			   cterm=bold
-highlight Statement    ctermfg=red			   cterm=none
-highlight cConditional ctermfg=red	           cterm=bold
+highlight Comment		ctermfg=black					cterm=bold
+highlight Constant		ctermfg=blue					cterm=none
+highlight Number		ctermfg=blue					cterm=bold
+highlight String		ctermfg=red		ctermbg=black	cterm=none
+highlight Identifier	ctermfg=red						cterm=bold
+highlight Function		ctermfg=red						cterm=bold
+highlight Statement		ctermfg=cyan					cterm=none
+highlight cConditional	ctermfg=red						cterm=bold
 highlight clear cStatement
 highlight link cStatement Statement
-highlight Label        ctermfg=red               cterm=bold,underline
+highlight Label			ctermfg=red						cterm=bold,underline
 highlight clear cLabel
 highlight link cLabel Label
-highlight PreProc	   ctermfg=red			   cterm=bold,underline
-highlight Type		   ctermfg=blue               cterm=none
-highlight Special	   ctermfg=red			   cterm=bold
-highlight cFormat      ctermfg=red			   cterm=bold
-highlight Error		                           cterm=bold
-highlight Todo         ctermfg=black  ctermbg=yellow	   cterm=bold
-highlight Directory    ctermfg=green
+highlight PreProc		ctermfg=red					cterm=bold,underline
+highlight Type			ctermfg=blue					cterm=none
+highlight Special		ctermfg=blue					cterm=none
+highlight cFormat		ctermfg=red						cterm=bold
+highlight Error											cterm=bold
+highlight Todo			ctermfg=black	ctermbg=yellow	cterm=bold
+highlight Directory		ctermfg=green
 "highlight Normal
-highlight Search       ctermfg=yellow  ctermbg=none cterm=bold
-highlight IncSearch    ctermfg=yellow  ctermbg=none cterm=bold,underline
-highlight Title        ctermfg=yellow               cterm=bold
+highlight Search		ctermfg=yellow	ctermbg=none	cterm=bold
+highlight IncSearch		ctermfg=yellow	ctermbg=none	cterm=bold,underline
+highlight Title			ctermfg=yellow					cterm=bold
 
-highlight Visual	   ctermfg=none ctermbg=black cterm=none
+highlight Visual		ctermfg=none	ctermbg=black	cterm=none
 
-highlight MatchParen   ctermfg=yellow  ctermbg=none cterm=bold
+highlight MatchParen	ctermfg=yellow	ctermbg=none	cterm=bold
 
-highlight DiffAdd		term=bold		cterm=none	ctermfg=none	ctermbg=black
-highlight DiffChange	term=bold		cterm=none	ctermfg=none	ctermbg=black
-highlight DiffDelete	term=reverse	cterm=none	ctermfg=black	ctermbg=none
-highlight DiffText		term=underline	cterm=bold	ctermfg=green	ctermbg=none
+highlight DiffAdd		term=bold			ctermfg=none	cterm=none	ctermbg=black
+highlight DiffChange	term=bold			ctermfg=none	cterm=none	ctermbg=black
+highlight DiffDelete	term=reverse		ctermfg=black	cterm=none	ctermbg=none
+highlight DiffText		term=underline		ctermfg=green	cterm=none	ctermbg=none
 
-hi StatusLine			term=reverse,bold	cterm=bold ctermbg=black ctermfg=yellow  guifg=#ffff00 guibg=#0000ff gui=none
-hi StatusLineNC			term=reverse		cterm=none ctermbg=black ctermfg=none
-hi VertSplit			term=reverse		cterm=none ctermbg=black ctermfg=black
-hi FoldColumn			term=reverse		cterm=bold ctermbg=none  ctermfg=red
+hi StatusLine			term=reverse,bold	ctermfg=yellow	ctermbg=black	cterm=bold	guifg=#ffff00 guibg=#0000ff gui=none
+hi StatusLineNC			term=reverse		ctermfg=none	ctermbg=black	cterm=none
+hi VertSplit			term=reverse		ctermfg=black	ctermbg=black	cterm=none
+hi FoldColumn			term=reverse		ctermfg=red		ctermbg=none	cterm=bold
 hi clear Folded
 hi link Folded FoldColumn
 hi LineNR				term=reverse,bold	ctermbg=none ctermfg=yellow cterm=bold
@@ -67,6 +67,6 @@ hi SpellLocal      term=underline cterm=bold ctermfg=green gui=undercurl guisp=C
 
 hi WildMenu        term=reverse cterm=bold ctermbg=black ctermfg=yellow
 
-highlight NonText      ctermfg=blue cterm=bold
+highlight NonText      ctermfg=black cterm=bold
 highlight SpecialKey   ctermfg=black cterm=none
 
