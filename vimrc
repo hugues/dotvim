@@ -268,8 +268,8 @@ autocmd WinLeave * set nocursorline
 
 
 " footnotes
-inoremap ,f <Esc>:call VimFootnotes()<CR>
-inoremap ,r <Esc>:exe b:pos<CR>
+inoremap ,, <Esc>:call VimFootnotes()<CR>
+inoremap ,. <Esc>:exe b:pos<CR>
 
 function! VimFootnotes()
   if exists("b:vimfootnotenumber")
