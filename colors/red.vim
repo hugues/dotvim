@@ -53,10 +53,12 @@ hi clear Folded
 hi link Folded FoldColumn
 hi LineNR				term=reverse,bold	ctermbg=none ctermfg=yellow cterm=bold
 
-hi TabLine				term=none,underline	cterm=none,underline ctermbg=none ctermfg=white
+hi clear TabLine
+hi TabLine				term=underline cterm=none,underline  ctermbg=none ctermfg=black
 hi clear TabLineFill
 hi link TabLineFill TabLine
-hi TabLineSel			term=bold			ctermbg=red  ctermfg=black cterm=bold
+hi clear TabLineSel
+hi TabLineSel			term=bold			ctermbg=black  ctermfg=yellow cterm=bold
 
 hi CursorLine			ctermbg=black cterm=none
 
