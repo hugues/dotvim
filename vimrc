@@ -3,8 +3,6 @@ color default
 
 "syntax clear
 syntax on
-"Allow special Vim improvements like multiple-undo
-set nocompatible
 "Seems to fuck up symlinks when set to no... [Debian bug #158657]
 set backupcopy=yes
 
