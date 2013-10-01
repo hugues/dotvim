@@ -11,8 +11,10 @@ endif
 setlocal iskeyword+=-
 syntax case ignore
 
-syn match  Todo      /([^)]*)/                    containedin=ALLBUT,todoDone,todoTaskDone
+syn match  Todo      /([^)]*)/                   containedin=ALLBUT,todoDone,todoTaskDone
 syn match  String    /\[[^\]]*\]/                 containedin=ALL
+
+syn match todoKeyWord  /[A-Z_-]\+:/
 
 syn region todoTitle     start=/^\z\(\s*\)\*/ end=/$/
 syn region todoTask1     start=/^\z\(\s*\)+/  end=/$/
@@ -34,5 +36,7 @@ hi link rtTicket SpellRare
 
 hi link todoDone     NonText
 hi link todoTaskDone NonText
+
+hi link todoKeyWord  PreProc
 
 let b:current_syntax="todo"
