@@ -139,7 +139,7 @@ endif
 
 " F*cking whitespaces
 autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
-autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+\| \+\|\t\zs \+/
+autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+\|\t\zs \+/
 
 set list listchars=tab:│ ,precedes:‥,extends:‥,nbsp:␣
 nmap <F3>	:set invlist<CR>
