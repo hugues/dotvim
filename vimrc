@@ -130,8 +130,20 @@ elseif has("cscope")
 
 		" cscope macros
 		nmap <ESC>c :execute CscopeSearch(expand("<cword>"))<CR>
-		nmap <ESC>f :execute CscopeSearch(expand("<cfile>"))<CR>
-		nmap <ESC>% :execute CscopeSearch(expand("%:t"))<CR>
+
+		" search definitions of word under cursor
+		nmap <ESC>g :cs find g <cword><CR>
+		nmap <ESC>S :cs find s <cword><CR>
+
+		" search file under cursor
+		"nmap <ESC>f :execute CscopeSearch(expand("<cfile>"))<CR>
+		nmap <ESC>F :execute CscopeSearch(expand("<cfile>"))<CR>
+		nmap <ESC>f :cs find f <cfile><CR>
+
+		" search files #including current file
+		"nmap <ESC>% :execute CscopeSearch(expand("%:t"))<CR>
+		nmap <ESC>% :cs find i %:t<CR>
+
 		nmap <ESC>r :execute CscopeSearch(input("Rechercher : "))<CR>
 	endif
 endif
