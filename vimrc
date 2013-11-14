@@ -159,7 +159,7 @@ nmap <F3>	:set invlist<CR>
 set title
 set autoindent
 set diffopt=iwhite,filler
-set guifont=LucidaTypewriter\ 8
+set guifont="Liberation Mono 10"
 
 " mouse
 "	v -> enabled in visual mode
