@@ -52,7 +52,7 @@ noremap <C-l> z2l
 noremap <C-h> z2h
 
 "Macros
-nmap <F2>	:source ~/.vim/bépo
+nmap <F2>	:set invet<CR>
 
 " folding
 set foldmethod=indent
@@ -72,19 +72,21 @@ set foldlevel=999
 
 nmap <F1>   /^\(<<<<<<<\\|=======\\|>>>>>>>\)<CR>
 
-nmap <F4>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-nmap <F5>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+nmap <F4>   :setlocal invnumber<CR>
+
+nmap <F6>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 
 " open all
-nmap <F6>	zR
+"nmap <F6>	zR
 " close all
-nmap <F7>	zM
+"nmap <F7>	zM
 " open/close under cursor
 nmap ;		za
 " open/close recursive under cursor
 "nmap <F7>	zA
 
-nmap <F10>	:setlocal invfoldenable<CR>
+nmap <F5>	:setlocal invfoldenable<CR>
 
 "buffer moving
 nmap <ESC>h	:tabN<CR>
