@@ -118,16 +118,18 @@ function! CscopeSearch(csearch)
 	return 'set hls | cscope find '.l:ctype.' '.a:csearch
 endfunction
 
-" Load local cscope db if exists
-if filereadable( expand("$PWD/tags") )
-	set tags=tags
-elseif filereadable( expand("$PWD/ctags.out") )
-	set tags=$pwd/ctags.out
-elseif has("cscope")
-	if filereadable( expand("$PWD/cscope.out") )
-		set cst
+function! LoadTags()
+	" Load local cscope db if exists
+	if filereadable( expand("$PWD/tags") )
+		set tags=tags
+	elseif filereadable( expand("$PWD/ctags.out") )
+		set tags=$pwd/ctags.out
+	elseif has("cscope")
+		if filereadable( expand("$PWD/cscope.out") )
+			set cst
+		endif
 
-        " Automagically done...
+		" Automagically done...
 		"cscope add $PWD/cscope.out
 
 		" cscope macros
@@ -142,14 +144,14 @@ elseif has("cscope")
 		nmap <ESC>F :execute CscopeSearch(expand("<cfile>"))<CR>
 		nmap <ESC>f :cs find f <cfile><CR>
 
-		" search files #including current file
-		"nmap <ESC>% :execute CscopeSearch(expand("%:t"))<CR>
-		nmap <ESC>% :cs find i %:t<CR>
+		" search current file
+		nmap <ESC>% :execute CscopeSearch(expand("%:t"))<CR>
+		"nmap <ESC>% :cs find i %:t<CR>
 
 		nmap <ESC>r :execute CscopeSearch(input("Rechercher : "))<CR>
 	endif
-endif
-
+endfunction
+call LoadTags()
 
 " F*cking whitespaces
 autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
