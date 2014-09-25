@@ -94,6 +94,15 @@ nmap <ESC>j	:bn<CR>
 nmap <ESC>k	:bN<CR>
 nmap <ESC>l	:tabn<CR>
 
+augroup skel
+  au!
+  " read in skeleton files
+  autocmd BufNewFile *.* silent! 0r ~/.vim/skel/%:e
+  autocmd BufNewFile *   silent! %substitute#<+\(.\{-\}\)+>#\=eval(submatch(1))#ge
+  " get to cursor position
+  autocmd BufNewFile *   silent! %substitute#<=CURSOR=>##g
+augroup END
+
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
