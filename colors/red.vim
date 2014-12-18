@@ -45,13 +45,16 @@ highlight DiffChange	term=bold			ctermfg=none	cterm=none	ctermbg=00
 highlight DiffDelete	term=reverse		ctermfg=00	cterm=none	ctermbg=none
 highlight DiffText		term=none		ctermfg=02	cterm=none	ctermbg=none
 
-hi StatusLine			term=reverse,bold	ctermfg=03	ctermbg=00	cterm=bold	guifg=#ffff00 guibg=#0000ff gui=none
-hi StatusLineNC			term=reverse		ctermfg=none	ctermbg=00	cterm=none
-hi VertSplit			term=reverse		ctermfg=00	ctermbg=00	cterm=none
-hi FoldColumn			term=reverse		ctermfg=01		ctermbg=none	cterm=bold
-hi clear Folded
-hi link Folded FoldColumn
-hi LineNR				term=reverse,bold	ctermbg=none ctermfg=03 cterm=bold
+hi! StatusLineCMD		term=reverse,bold		ctermfg=64	ctermbg=none		cterm=bold
+hi! StatusLineINS		term=reverse,bold		ctermfg=09	ctermbg=none		cterm=bold
+hi! link StatusLine StatusLineCMD
+au InsertLeave * hi! link StatusLine StatusLineCMD
+au InsertEnter * hi! link StatusLine StatusLineINS
+hi! User1			term=reverse,underline	ctermfg=01	ctermbg=none		cterm=bold
+hi! User2			term=bold				ctermfg=03	ctermbg=none		cterm=bold
+hi! User3			term=bold				ctermfg=80	ctermbg=00			cterm=bold
+hi! User4			term=bold				ctermfg=32	ctermbg=none		cterm=none
+hi! StatusLineNC	term=reverse			ctermfg=08	ctermbg=none		cterm=bold
 
 hi clear TabLine
 hi TabLine				term=underline cterm=none,underline  ctermbg=none ctermfg=00

@@ -44,6 +44,8 @@ function! MyTabLabel(n)
   return bufname(buflist[winnr - 1])
 endfunction
 
+set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
+
 set tabline=%!MyTabLine()
 
 set wildmode=longest,list,full
@@ -201,6 +203,7 @@ augroup WhiteSpaces
 augroup END
 
 set list listchars=tab:│ ,precedes:‥,extends:‥,nbsp:␣
+set fillchars=vert:│,stl:─,stlnc:─,fold:-,diff:x
 nmap <F3>	:set invlist<CR>
 
 set title
