@@ -57,14 +57,12 @@ nmap <F2>	:set invet<CR>
 " folding
 set foldmethod=indent
 set foldignore=
-autocmd BufRead *.[ch] setlocal foldmethod=syntax
-autocmd BufRead /tmp/mutt-*[0-9] setlocal foldmethod=expr
-autocmd BufRead /tmp/mutt-*[0-9] setlocal foldexpr=(strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")))
-" Highlights columns 77-80 and 81+
-autocmd BufRead /tmp/mutt-*[0-9] let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-autocmd BufRead /tmp/mutt-*[0-9] let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-
-
+augroup Folding
+	au!
+	autocmd FileType c\|cpp		setlocal foldmethod=syntax
+	autocmd FileType mail		setlocal foldmethod=expr
+	autocmd FileType mail		setlocal foldexpr=(strlen(substitute(matchstr(getline(v:lnum),\"^\ *[>\ ]*\"),\"\ *\",\"\",\"g\")))
+augroup END
 
 set foldminlines=0
 set foldcolumn=5
@@ -94,7 +92,7 @@ nmap <ESC>j	:bn<CR>
 nmap <ESC>k	:bN<CR>
 nmap <ESC>l	:tabn<CR>
 
-augroup skel
+augroup Skeleton
   au!
   " read in skeleton files
   autocmd BufNewFile *.* silent! 0r ~/.vim/skel/%:e
@@ -103,14 +101,17 @@ augroup skel
   autocmd BufNewFile *   silent! %substitute#<=CURSOR=>##g
 augroup END
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\   exe "normal g`\"" |
-	\   exe "normal zz" |
-	\ endif
+augroup Load
+	au!
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	autocmd BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\   exe "normal g`\"" |
+		\   exe "normal zz" |
+		\ endif
+augroup END
 
 function! CscopeSearch(csearch)
 
@@ -162,9 +163,11 @@ function! LoadTags()
 endfunction
 call LoadTags()
 
-" F*cking whitespaces
-autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
-autocmd BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\| \+\|\t\zs \+/
+augroup WhiteSpaces
+	" F*cking whitespaces
+	autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
+	autocmd BufRead * match     ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
+augroup END
 
 set list listchars=tab:│ ,precedes:‥,extends:‥,nbsp:␣
 nmap <F3>	:set invlist<CR>
@@ -260,21 +263,30 @@ endfunction
 command! GitBlameCurrentLine :call GitBlameCurrentLine()
 map <ESC>b :GitBlameCurrentLine<CR>
 
-" <ESC>n	goto next empty reply-to paragraph
-" <ESC>m	opens an empty reply-paragraph at this line
-" <ESC>d	deletes everything until but the signature
-" <ESC>w	reformats entire mail but the signature
-" <ESC>D	deletes everything until but the previous reply-to §
-autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>n /^> $<CR>
-autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
-autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>d ^d/^-- $<CR>O<ESC>
-autocmd BufRead /tmp/mutt-*[0-9a-f] map <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
+augroup MailEditor
+	au!
 
-set spelllang=fr,en,de
-autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal spell
-autocmd BufRead /tmp/mutt-*[0-9a-f] setlocal textwidth=74
-autocmd BufRead /tmp/mutt-*[0-9a-f] execute Erase_Sig_but_Your()
-autocmd BufRead /tmp/mutt-*[0-9a-f] :normal ,n
+	" Highlights columns 77-80 and 81+
+	autocmd BufRead /tmp/mutt-*[0-9]	let w:m1=matchadd('Search', '\%>77v,\+', -1)
+	autocmd BufRead /tmp/mutt-*[0-9]	let w:m2=matchadd('ErrorMsg', '\%>81v,\+', -1)
+
+	" <ESC>n	goto next empty reply-to paragraph
+	" <ESC>m	opens an empty reply-paragraph at this line
+	" <ESC>d	deletes everything until but the signature
+	" <ESC>w	reformats entire mail but the signature
+	" <ESC>D	deletes everything until but the previous reply-to §
+	autocmd FileType mail noremap <ESC>n /^> $<CR>
+	autocmd FileType mail noremap <ESC>D ^d?^\([^>]\\|$\)?+<CR>O<ESC>
+	autocmd FileType mail noremap <ESC>d ^d/^-- $<CR>O<ESC>
+	autocmd FileType mail noremap <ESC>w ggv/^-- $<CR><UP>:!par rTbgqRe 'B=.,?_A_a' 'Q=_s>\|'<CR>
+
+	set spelllang=fr,en,de
+	autocmd FileType mail setlocal spell
+	autocmd FileType mail setlocal textwidth=74
+	autocmd FileType mail execute Erase_Sig_but_Your()
+
+	autocmd FileType mail :normal ,n
+augroup END
 
 map zc	z=1<CR><CR>
 
@@ -285,13 +297,31 @@ function! SetLocalTabs(tabsize)
 	setlocal smarttab
 	setlocal expandtab
 endfunction
-autocmd BufAdd *.py execute SetLocalTabs(4)
 
-autocmd BufEnter * set cursorline
-autocmd WinEnter * set cursorline
-autocmd BufLeave * set nocursorline
-autocmd WinLeave * set nocursorline
+""
+"" DafUq ?
+""--------
+"augroup Tabs
+"	au!
+"	autocmd FileType python execute SetLocalTabs(4)
+"augroup END
+"
 
+augroup CursorLine
+	au!
+
+	" when switching between buffers
+	autocmd BufEnter * set cursorline
+	autocmd BufLeave * set nocursorline
+
+	" when switching between windows
+	autocmd WinEnter * set cursorline
+	autocmd WinLeave * set nocursorline
+
+	" doesn’t seem to work on urxvt :(
+	autocmd FocusLost * set nocursorline
+	autocmd FocusGained * set cursorline
+augroup END
 
 " footnotes
 inoremap ,, <Esc>:call VimFootnotes()<CR>
