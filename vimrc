@@ -253,8 +253,16 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
-noremap U		yyp:s/[^	]/-/g<CR>:noh<CR>
-noremap Y		yyp:s/[^	]/=/g<CR>:noh<CR>
+"noremap U		yyp:s/[^	]/-/g<CR>:noh<CR>
+"noremap Y		yyp:s/[^	]/=/g<CR>:noh<CR>
+
+" Code comment/uncomment
+ noremap <silent> //    m"I// <ESC>g`"3l
+ noremap <silent> /*    m"I/* <ESC>A */<ESC>jg`"3l
+    xmap <silent> //    /*
+xnoremap <silent> /*    <ESC>`>a */<ESC>`<i/* <ESC>
+ noremap <silent> \*    m"e?/\* *<CR>:s:/\* *::<CR>/ *\*\/<CR>:s: *\*/::\|:nohl<CR>jg`"3h
+ noremap <silent> \\    m"0:s:// *::\|:nohl<CR>g`"3h
 
 " Reformatting is done using 'gq<motion>'
 noremap <ESC>Q	:s/^/> /<CR>
