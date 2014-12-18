@@ -1,7 +1,7 @@
 /*
   This file is a part of Qosmos ixEngine.
 
-   Copyright  Qosmos 2000-<+strftime("%Y")+> - All rights reserved
+  Copyright Qosmos 2000-<+strftime("%Y")+> - All rights reserved
 
   This computer program and all its components are protected by
   authors' rights and copyright law and by international treaties.
@@ -12,9 +12,9 @@
   to the maximum extent possible under the law.
 */
 
-#ifndef <+substitute(toupper(expand("%:t")), "\\.", "_", "g")+>
-#define <+substitute(toupper(expand("%:t")), "\\.", "_", "g")+>
+#ifndef <+substitute(toupper(expand("%:t")), "[\\.-]", "_", "g")+>_
+#define <+substitute(toupper(expand("%:t")), "[\\.-]", "_", "g")+>_
 
 <=CURSOR=>
 
-#endif /* <+substitute(toupper(expand("%:t")), "\\.", "_", "g")+> */
+#endif /* <+substitute(toupper(expand("%:t")), "[\\.-]", "_", "g")+>_ */
