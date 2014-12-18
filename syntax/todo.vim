@@ -15,7 +15,7 @@ syn match  Todo      /→ .*/                   containedin=ALLBUT,todoDone,todo
 "syn match  String    /{[^}]*}/                 containedin=ALL
 syn match  String    /'[^']*'\|"[^"]*"/        containedin=ALL
 
-syn match todoKeyWord  /^\s*\([A-Z _-]*\w\+\):/
+syn match todoKeyWord  /^\s*\([^:]*\w\+\):/
 
 syn region todoTask3     start=/^\(\s*\)\W/  end=/$/       contains=todoKeyWord
 syn region todoTask2     start=/^\(\s*\)-/  end=/$/       contains=todoKeyWord
