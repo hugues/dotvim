@@ -73,6 +73,9 @@ let c_comment_strings=1
 " Backup dir
 set autowrite
 
+set splitright
+set splitbelow
+
 " default error format
 "set efm=\"%f\"\\,\ line\ %l:\ error\ %m,\"%f\"\\,\ line\ %l:\ warning\ %m
 
@@ -237,7 +240,7 @@ nmap <F3>	:set invlist<CR>
 
 set title
 set autoindent
-set diffopt=iwhite,filler
+set diffopt=iwhite,filler,vertical
 set guifont="Liberation Mono 10"
 
 " mouse
