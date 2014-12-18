@@ -259,6 +259,9 @@ set noexpandtab
 "noremap U		yyp:s/[^	]/-/g<CR>:noh<CR>
 "noremap Y		yyp:s/[^	]/=/g<CR>:noh<CR>
 
+set ttimeoutlen=0
+set timeoutlen=250
+
 " Code comment/uncomment
  noremap <silent> //    m"I// <ESC>g`"3l
  noremap <silent> /*    m"I/* <ESC>A */<ESC>jg`"3l
