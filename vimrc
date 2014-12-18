@@ -115,7 +115,6 @@ noremap <C-h> z2h
 
 "Macros
 nmap <F2>	:set invet<CR>
-
 " folding
 set foldmethod=indent
 set foldignore=
@@ -127,16 +126,18 @@ augroup Folding
 augroup END
 
 set foldminlines=0
-set foldcolumn=5
+set foldcolumn=0
 set foldlevel=999
 
-nmap <F1>   /^\(<<<<<<<\\|=======\\|>>>>>>>\)<CR>
+" Quick search for merges
+nmap <F1>   /^\(<\{7\}\\|>\{7\}\\|=\{7\}\)<CR>
 
-nmap <F4>   :setlocal invnumber<CR>
+nmap <F4>   :windo set invnumber<CR>
 
-nmap <F6>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-
+"nmap <F6>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+"nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
+nmap <F6>	:windo set foldcolumn-=1<CR>
+nmap <F7>	:windo set foldcolumn+=1<CR>
 " open all
 "nmap <F6>	zR
 " close all
@@ -145,8 +146,7 @@ nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn
 nmap ;		za
 " open/close recursive under cursor
 "nmap <F7>	zA
-
-nmap <F5>	:setlocal invfoldenable<CR>
+nmap <F5>	:windo set invfoldenable<CR>
 
 "buffer moving
 nmap <ESC>h	:tabN<CR>
