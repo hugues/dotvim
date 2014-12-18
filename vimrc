@@ -253,17 +253,17 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
-map U		yyp:s/[^	]/-/g<CR>:noh<CR>
-map Y		yyp:s/[^	]/=/g<CR>:noh<CR>
+noremap U		yyp:s/[^	]/-/g<CR>:noh<CR>
+noremap Y		yyp:s/[^	]/=/g<CR>:noh<CR>
 
 " Reformatting is done using 'gq<motion>'
-map <ESC>Q	:s/^/> /<CR>
-map <ESC>q	:s/^[ ]*>[ ]*//<CR>
+noremap <ESC>Q	:s/^/> /<CR>
+noremap <ESC>q	:s/^[ ]*>[ ]*//<CR>
 
-map <silent> <ESC>u	:noh<CR>
+noremap <silent> <ESC>u	:noh<CR>
 
 runtime! ftplugin/man.vim
-map K		:Man <C-R>=expand("<cword>")<CR><CR>
+noremap K		:Man <C-R>=expand("<cword>")<CR><CR>
 
 
 " Function
@@ -324,7 +324,7 @@ function! GitBlameCurrentLine()
 	echohl WarningMsg | echo line | echohl None
 endfunction
 command! GitBlameCurrentLine :call GitBlameCurrentLine()
-map <ESC>b :GitBlameCurrentLine<CR>
+noremap <ESC>b :GitBlameCurrentLine<CR>
 
 augroup MailEditor
 	au!
@@ -351,7 +351,7 @@ augroup MailEditor
 	autocmd FileType mail :normal ,n
 augroup END
 
-map zc	z=1<CR><CR>
+noremap zc	z=1<CR><CR>
 
 function! SetLocalTabs(tabsize)
 	execute 'setlocal tabstop=' . a:tabsize
@@ -407,4 +407,3 @@ function! VimFootnotes()
   endif
   startinsert!
 endfunction
-
