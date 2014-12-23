@@ -11,23 +11,33 @@ endif
 setlocal iskeyword+=-
 syntax case ignore
 
-syn match  Todo      /→ .*/                   containedin=ALLBUT,todoDone,todoTaskDone
+"syn match  Todo      /\<\u\+\>/                   containedin=ALLBUT,todoDone,todoTaskDone
 "syn match  String    /{[^}]*}/                 containedin=ALL
 syn match  String    /'[^']*'\|"[^"]*"/        containedin=ALL
 
-syn match todoKeyWord  /^\s*\([^:]*\w\+\):/
+syn match todoKeyWord  /\(\[[ .oOX]\]\)/
 
-syn region todoTask3     start=/^\(\s*\)\W/  end=/$/       contains=todoKeyWord
-syn region todoTask2     start=/^\(\s*\)-/  end=/$/       contains=todoKeyWord
-syn region todoTask1     start=/^\(\s*\)+/  end=/$/      contains=todoKeyWord
-syn region todoTitle     start=/^\(\s*\)\*/ end=/$/       contains=todoKeyWord
+syn region todoTitle1     start=/^\s*=/ end=/=$/
+syn region todoTitle2     start=/^\s*==/ end=/==$/
+syn region todoTitle3     start=/^\s*===/ end=/===$/
+syn region todoTitle4     start=/^\s*====/ end=/====$/
 
-syn region todoDone      start=/^x/  end=/^\(\S\|$\)/me=s-1 contains=todoTaskDone
-syn region todoTaskDone  start=/^\z\(\s\+\)x/ skip=/^\z1\s\+/ end=/^/me=s-1
+syn region todoTask1     start=/^\s*[-*#] \[ \]/  end=/$/me=s-1  contains=todoKeyWord,todoTask2,todoTask3,todoTask4
+syn region todoTask2     start=/^\s*[-*#] \[\.\]/  end=/$/me=s-1 contains=todoKeyWord,todoTask3,todoTask4
+syn region todoTask3     start=/^\s*[-*#] \[o\]/  end=/$/me=s-1  contains=todoKeyWord,todoTask4
+syn region todoTask4     start=/^\s*[-*#] \[O\]/  end=/$/me=s-1  contains=todoKeyWord
+"syn region todoTask3     start=/^\(\s*\)\W/  end=/$/       contains=todoKeyWord
+"syn region todoTask2     start=/^\(\s*\)+/  end=/$/       contains=todoKeyWord
+"syn region todoTask1     start=/^\(\s*\)-/  end=/$/      contains=todoKeyWord
 
-syn match  rtTicket /\(RTC *\)\?\#\d\+/                     containedin=ALLBUT,todoDone,todoTaskDone
+syn region todoDone      start=/^[-*#] \[X\]/  end=/^\(\S\|$\)/me=s-1 contains=todoTaskDone
+syn region todoTaskDone  start=/^\z\(\s\+\)[-*#] \[X\]/ skip=/^\z1\s\+/ end=/^/me=s-1
+
+syn region todoLink      start=/\[\[/  end=/\]\]/ containedin=ALL
+
+syn match  rtTicket /\(SF *\|\(RTC *\)\?\#\)\d\+/                     containedin=ALLBUT,todoDone,todoTaskDone
 
 "syn region Comment start=/^\%^/ end=/=$/
-syn region Comment start=/^ *==/ end=/$/
+"syn region Comment start=/^ *==/ end=/$/
 
 let b:current_syntax="todo"

@@ -83,14 +83,21 @@ hi! SpecialKey   ctermfg=80 cterm=none
 hi! makeCommands ctermfg=86 ctermbg=0
 
 " TODO
-hi! todoTitle ctermfg=11 cterm=bold
-hi! todoTask1 ctermfg=36 cterm=bold
-hi! todoTask2 ctermfg=24
-hi! todoTask3 ctermfg=77
+hi! todoTitle1 ctermfg=03 cterm=bold
+hi! todoTitle2 ctermfg=68 cterm=bold
+hi! todoTitle3 ctermfg=36 cterm=bold
+hi! todoTitle4 ctermfg=10 cterm=bold
+
+hi! todoTask1 ctermfg=none
+hi! todoTask2 ctermfg=86
+hi! todoTask3 ctermfg=83
+hi! todoTask4 ctermfg=81
+
+hi! todoLink  ctermfg=64 ctermbg=32 cterm=underline
 
 hi! rtTicket ctermfg=22 ctermbg=18 cterm=bold
 
-hi! link todoDone     DiffDelete
-hi! link todoTaskDone DiffDelete
+hi! todoDone     ctermfg=16 cterm=bold
+hi! todoTaskDone ctermfg=08 cterm=bold
 
-hi! todoKeyWord  ctermfg=64 ctermbg=32 cterm=bold
+hi! todoKeyWord  ctermfg=80 ctermbg=08 cterm=bold

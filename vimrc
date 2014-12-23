@@ -421,3 +421,8 @@ function! VimFootnotes()
   endif
   startinsert!
 endfunction
+
+augroup Todo
+	au!
+	autocmd FileType vimwiki set syn=todo
+augroup END
