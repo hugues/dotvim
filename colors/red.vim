@@ -578,6 +578,7 @@ if has("gui_running") || &t_Co >= 255
 "Subtitle       xxx links to Identifier
 
 	hi!			Comment			ctermfg=240					cterm=bold
+	hi!			ColorColumn		ctermfg=234		ctermbg=none
 	hi!			Constant		ctermfg=22					cterm=bold
 	hi!			Number			ctermfg=28					cterm=bold
 	hi!			String			ctermfg=238		ctermbg=00	cterm=none
