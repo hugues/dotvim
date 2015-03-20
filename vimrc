@@ -83,31 +83,31 @@ set splitbelow
 " This tends to slow down redrawing, but is very useful.
 " Based on https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
 " XXX: this will only work with lines containing text (i.e. not '~')
-if v:version > 703
-function! s:DimInactiveWindows()
-  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
-    let l:range = ""
-    if i != winnr()
-      if &wrap
-        " HACK: when wrapping lines is enabled, we use the maximum number
-        " of columns getting highlighted. This might get calculated by
-        " looking for the longest visible line and using a multiple of
-        " winwidth().
-        let l:width=256 " max
-      else
-        let l:width=winwidth(i)
-      endif
-      let l:range = join(range(1, l:width), ',')
-    endif
-    call setwinvar(i, '&colorcolumn', l:range)
-  endfor
-endfunction
-augroup DimInactiveWindows
-  au!
-  au WinEnter * call s:DimInactiveWindows()
-augroup END
-endif
-
+"if v:version > 703
+"function! s:DimInactiveWindows()
+"  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+"    let l:range = ""
+"    if i != winnr()
+"      if &wrap
+"        " HACK: when wrapping lines is enabled, we use the maximum number
+"        " of columns getting highlighted. This might get calculated by
+"        " looking for the longest visible line and using a multiple of
+"        " winwidth().
+"        let l:width=256 " max
+"      else
+"        let l:width=winwidth(i)
+"      endif
+"      let l:range = join(range(1, l:width), ',')
+"    endif
+"    call setwinvar(i, '&colorcolumn', l:range)
+"  endfor
+"endfunction
+"augroup DimInactiveWindows
+"  au!
+"  au WinEnter * call s:DimInactiveWindows()
+"augroup END
+"endif
+"
 " remaps C-j & C-k to C-y and C-e (buffer up/down line-by-line)
 noremap <C-k> <C-y>
 noremap <C-j> <C-e>
