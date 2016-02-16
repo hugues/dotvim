@@ -44,7 +44,8 @@ function! MyTabLabel(n)
   return bufname(buflist[winnr - 1])
 endfunction
 
-set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
+"set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
+set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%P%*├
 
 set tabline=%!MyTabLine()
 
