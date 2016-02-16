@@ -577,12 +577,17 @@ if has("gui_running") || &t_Co >= 255
 "helpExampleStart xxx links to helpIgnore
 "Subtitle       xxx links to Identifier
 
+	hi! CursorLine		ctermbg=00 cterm=none
+	hi! CursorColumn	ctermbg=236 cterm=none
+
+
 	hi!			Comment			ctermfg=240					cterm=bold
 	hi!			ColorColumn		ctermfg=234		ctermbg=none
 	hi!			Constant		ctermfg=22					cterm=bold
 	hi!			Number			ctermfg=28					cterm=bold
-	hi!			String			ctermfg=238		ctermbg=00	cterm=none
+	hi!			String			ctermfg=240		ctermbg=234	cterm=none
 	hi!			Identifier		ctermfg=01					cterm=bold
+	"hi!	link	Keyword Identifier
 	hi!			Function		ctermfg=01					cterm=bold
 	hi!			Statement		ctermfg=160					cterm=bold
 	hi!	link	cStatement Statement
@@ -634,10 +639,10 @@ if has("gui_running") || &t_Co >= 255
 
 	hi! MatchParen	ctermfg=03	ctermbg=none	cterm=bold
 
-	hi! DiffAdd		term=bold			ctermfg=none	cterm=none	ctermbg=black
-	hi! DiffChange	term=bold			ctermfg=none	cterm=none	ctermbg=black
-	hi! DiffDelete	term=reverse		ctermfg=black	cterm=none	ctermbg=none
-	hi! DiffText	term=none			ctermfg=none	cterm=none	ctermbg=88
+	hi! DiffAdd		term=bold			ctermfg=none	cterm=none	ctermbg=61
+	hi! DiffChange	term=bold			ctermfg=none	cterm=none	ctermbg=none
+	hi! DiffDelete	term=reverse		ctermfg=61	cterm=none	ctermbg=none
+	hi! DiffText	term=none			ctermfg=none	cterm=none	ctermbg=61
 
 	hi! StatusLineCMD		term=reverse,bold		ctermfg=160	ctermbg=none		cterm=bold
 	hi! StatusLineINS		term=reverse,bold		ctermfg=09	ctermbg=none		cterm=bold
@@ -658,9 +663,6 @@ if has("gui_running") || &t_Co >= 255
 	hi!       TabLine		term=underline cterm=none,underline	ctermbg=none ctermfg=00
 	hi! link  TabLineFill	TabLine
 	hi!       TabLineSel	term=bold							ctermbg=88  ctermfg=160 cterm=bold
-
-	hi! CursorLine		ctermbg=00 cterm=none
-	hi! CursorColumn	ctermbg=236 cterm=none
 
 	hi! SpellBad        term=reverse cterm=bold ctermbg=52 ctermfg=160
 	hi! SpellCap        term=reverse cterm=none ctermbg=none ctermfg=01
