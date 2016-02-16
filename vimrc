@@ -1,4 +1,8 @@
 
+filetype plugin indent on
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
 color default
 
 "syntax clear
@@ -265,7 +269,12 @@ set mousem=extend
 
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+augroup DetectIndentation
+	autocmd BufRead * DetectIndent
+augroup END
 
 " Draws underline (waits for char input)
 noremap U		yyp0<C-v>$r
