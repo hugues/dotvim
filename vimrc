@@ -1,4 +1,6 @@
 
+execute pathogen#infect()
+
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
