@@ -116,6 +116,10 @@ noremap <C-j> <C-e>
 set nowrap
 noremap <C-l> z2l
 noremap <C-h> z2h
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
 
 "Macros
 nmap <F2>	:set invet<CR>
