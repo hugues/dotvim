@@ -267,8 +267,8 @@ set tabstop=4
 set shiftwidth=4
 set noexpandtab
 
-"noremap U		yyp:s/[^	]/-/g<CR>:noh<CR>
-"noremap Y		yyp:s/[^	]/=/g<CR>:noh<CR>
+" Draws underline (waits for char input)
+noremap U		yyp0<C-v>$r
 
 set ttimeoutlen=0
 set timeoutlen=250
