@@ -421,15 +421,15 @@ augroup CursorLine
 augroup END
 
 " footnotes
-inoremap ,, <Esc>:call VimFootnotes()<CR>
-inoremap ,. <Esc>:exe b:pos<CR>
+noremap ,, <Esc>:call VimFootnotes()<CR>
+noremap ,. <Esc>:exe b:pos<CR>
 
 function! VimFootnotes()
   if exists("b:vimfootnotenumber")
     let b:vimfootnotenumber = b:vimfootnotenumber + 1
     let cr = ""
   else
-    let b:vimfootnotenumber = 0
+    let b:vimfootnotenumber = 1
     let cr = "\<CR>"
   endif
   let b:pos = line('.').' | normal! '.virtcol('.').'|'.'4l'
