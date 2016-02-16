@@ -218,6 +218,7 @@ function! LoadTags()
 		"cscope add $PWD/cscope.out
 
 		" cscope macros
+		nmap <ESC>C :!cscope -bqu<CR>:cs reset<CR>
 		nmap <ESC>c :execute CscopeSearch(expand("<cword>"))<CR>
 
 		" search definitions of word under cursor
