@@ -137,6 +137,11 @@ set foldminlines=0
 set foldcolumn=0
 set foldlevel=999
 
+augroup Lilo
+	au!
+	autocmd BufEnter */etc/lilo*		set syntax=lilo
+augroup END
+
 " Quick search for merges
 nmap <F1>   /^\(<\{7\}\\|>\{7\}\\|=\{7\}\)<CR>
 
