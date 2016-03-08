@@ -51,7 +51,7 @@ function! MyTabLabel(n)
 endfunction
 
 "set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
-set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%P%*├
+set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%P%*├
 
 set tabline=%!MyTabLine()
 
