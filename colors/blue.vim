@@ -600,7 +600,7 @@ if has("gui_running") || &t_Co >= 255
 	hi!			Type			ctermfg=69					cterm=bold
 	hi!			cType			ctermfg=12					cterm=none
 	hi!			Special			ctermfg=24	ctermbg=none	cterm=none
-	hi!			cSpecial		ctermfg=17	ctermbg=24		cterm=none
+	hi!			cSpecial		ctermfg=31	ctermbg=24		cterm=none
 	hi!			cFormat			ctermfg=04	ctermbg=24		cterm=bold
 	hi!			Error	term=reverse cterm=bold ctermbg=none ctermfg=226
 	hi!	link	ErrorMsg Error
@@ -826,3 +826,6 @@ elseif &t_Co >= 88
 	hi! todoMark     ctermfg=80 ctermbg=08 cterm=bold
 	hi! todoMarkee   ctermfg=16 ctermbg=08 cterm=bold
 endif
+
+color NERD
+
