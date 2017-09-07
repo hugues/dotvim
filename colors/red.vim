@@ -699,6 +699,9 @@ if has("gui_running") || &t_Co >= 255
 	hi! todoDiggle   ctermfg=236 ctermbg=none cterm=bold
 	hi! todoMark     ctermfg=236 ctermbg=08 cterm=bold
 
+	hi! EasyMotionTargetDefault ctermfg=48 cterm=bold ctermbg=none
+	hi! EasyMotionTarget				ctermfg=48 cterm=none ctermbg=none
+
 elseif &t_Co >= 88
 	hi!			Comment			ctermfg=81					cterm=bold
 	hi!			Constant		ctermfg=65					cterm=none

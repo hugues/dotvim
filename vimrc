@@ -292,6 +292,46 @@ xnoremap <silent> /*    <ESC>`>a */<ESC>`<i/* <ESC>
  noremap <silent> \*    m"e?/\* *<CR>:s:/\* *::<CR>/ *\*\/<CR>:s: *\*/::\|:nohl<CR>jg`"3h
  noremap <silent> \\    m"0:s:// *::\|:nohl<CR>g`"3h
 
+
+ noremap <silent> /<CR> :NERDTreeToggle<CR>
+
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<C-l>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+let mapleader=" "
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap <Leader><Leader> <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap <Leader><Leader> <Plug>(easymotion-overwin-f2)
+
+" Turn off case insensitive feature
+let g:EasyMotion_smartcase = 0
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+
+
 " Reformatting is done using 'gq<motion>'
 noremap <ESC>Q	:s/^/> /<CR>
 noremap <ESC>q	:s/^[ ]*>[ ]*//<CR>
