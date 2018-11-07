@@ -666,6 +666,7 @@ if has("gui_running") || &t_Co >= 255
 	hi! Folded				term=reverse			ctermfg=00	ctermbg=none	cterm=bold
 	hi! link FoldColumn Folded
 	hi! LineNR				term=reverse,bold	ctermbg=none ctermfg=236 cterm=bold
+	hi! CursorLineNR				term=reverse,bold	ctermbg=none ctermfg=24 cterm=none
 
 	hi!       TabLine		term=underline cterm=none,underline	ctermbg=none ctermfg=00
 	hi! link  TabLineFill	TabLine

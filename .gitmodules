@@ -22,3 +22,18 @@
 [submodule "bundle/incsearch-easymotion.vim"]
 	path = bundle/incsearch-easymotion.vim
 	url = https://github.com/haya14busa/incsearch-easymotion.vim
+[submodule "bundle/ack"]
+	path = bundle/ack
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://github.com/ervandew/supertab
+[submodule "bundle/vimshell.vim"]
+	path = bundle/vimshell
+	url = https://github.com/Shougo/vimshell.vim
+[submodule "bundle/vimproc"]
+	path = bundle/vimproc
+	url = http://github.com/Shougo/vimproc
+[submodule "bundle/vim-plug"]
+	path = bundle/vim-plug
+	url = https://github.com/junegunn/vim-plug.git

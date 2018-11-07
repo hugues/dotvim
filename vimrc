@@ -1,6 +1,15 @@
 
 execute pathogen#infect()
 
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-easy-align'
+call plug#end()
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign
+
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -20,6 +29,7 @@ set ruler
 "Show line numbers
 set number
 set laststatus=2
+set rnu "use relative line numbers to cursor
 
 function! MyTabLine()
   let s = ''
@@ -50,8 +60,18 @@ function! MyTabLabel(n)
   return bufname(buflist[winnr - 1])
 endfunction
 
+" Show current C function name
+fun! ShowFuncName()
+  let lnum = line(".")
+  let col = col(".")
+  echohl ModeMsg
+  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bWn'))
+  echohl None
+  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+
 "set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
-set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%P%*├
+set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%1*%v,%c%*├─┤%P%*├
 
 set tabline=%!MyTabLine()
 
@@ -128,7 +148,8 @@ noremap gj j
 noremap gk k
 
 "Macros
-nmap <F2>	:set invet<CR>
+"nmap <F2>	mc:%s/[\t ]\+$//<CR>'c
+nmap <F2>	:make<CR>
 " folding
 set foldmethod=indent
 set foldignore=
@@ -151,7 +172,7 @@ augroup END
 " Quick search for merges
 nmap <F1>   /^\(<\{7\}\\|>\{7\}\\|=\{7\}\)<CR>
 
-nmap <F4>   :windo set invnumber<CR>
+nmap <F4>   :windo set invrelativenumber<CR>
 
 "nmap <F6>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 "nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
@@ -165,7 +186,8 @@ nmap <F7>	:windo set foldcolumn+=1<CR>
 nmap ;		za
 " open/close recursive under cursor
 "nmap <F7>	zA
-nmap <F5>	:windo set invfoldenable<CR>
+"nmap <F5>	:windo set invfoldenable<CR>
+nmap <F5>	:set invet<CR>
 
 "buffer moving
 nmap <ESC>h	:tabN<CR>
@@ -199,7 +221,7 @@ function! CscopeSearch(csearch)
 	let @/=a:csearch
 	set hls
 
-	let l:prompt =  "Rechercher '".a:csearch."' avec cscope [cdefgist] : "
+	let l:prompt =  "Rechercher '".a:csearch."' avec cscope [acdefgist] : "
 
 	echo l:prompt
 	let l:ctype=nr2char(getchar())
@@ -216,12 +238,14 @@ function! LoadTags()
 	elseif filereadable( expand("$PWD/ctags.out") )
 		set tags=$pwd/ctags.out
 	elseif has("cscope")
+        set cst
 		if filereadable( expand("$PWD/cscope.out") )
-			set cst
+			cscope add $PWD/cscope.out
 		endif
-
-		" Automagically done...
-		"cscope add $PWD/cscope.out
+        let l:git  = system("dirname $(git rev-parse --git-dir) | tr -d '\n'")
+        if filereadable ( l:git . '/cscope.out' ) && l:git != expand("$PWD")
+            exe 'cscope add ' . l:git . ' ' . l:git
+        endif
 
 		" cscope macros
 		nmap <ESC>C :!cscope -bqu<CR>:cs reset<CR>
@@ -247,7 +271,7 @@ call LoadTags()
 
 augroup WhiteSpaces
 	" F*cking whitespaces
-	autocmd BufRead * highlight ExtraWhitespace ctermbg=red ctermfg=black guibg=red
+	autocmd BufRead * highlight ExtraWhitespace ctermbg=160 ctermfg=black guibg=red
 	autocmd BufRead * match     ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
 augroup END
 
@@ -258,7 +282,6 @@ nmap <F3>	:set invlist<CR>
 set title
 set autoindent
 set diffopt=iwhite,filler,vertical
-set guifont="Liberation Mono 10"
 
 " mouse
 "	v -> enabled in visual mode
@@ -274,6 +297,7 @@ set shiftwidth=4
 set expandtab
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
+let g:detectindent_preferred_when_mixed = 1
 augroup DetectIndentation
 	autocmd BufRead * DetectIndent
 augroup END
@@ -287,9 +311,10 @@ set timeoutlen=250
 " Code comment/uncomment
  noremap <silent> //    m"I// <ESC>g`"3l
  noremap <silent> /*    m"I/* <ESC>A */<ESC>jg`"3l
-    xmap <silent> //    /*
+"    xmap <silent> //    /*
+xnoremap <silent> //    <ESC>`>o#endif<ESC>`<O#if 0<ESC>
 xnoremap <silent> /*    <ESC>`>a */<ESC>`<i/* <ESC>
- noremap <silent> \*    m"e?/\* *<CR>:s:/\* *::<CR>/ *\*\/<CR>:s: *\*/::\|:nohl<CR>jg`"3h
+ noremap <silent> \*    m"e?/\* <CR>xxx/ \*\/<CR>xxx:nohl<CR>jg`"3h
  noremap <silent> \\    m"0:s:// *::\|:nohl<CR>g`"3h
 
 
@@ -311,6 +336,13 @@ endfunction
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+" FuzzyFinder
+map ff <ESC>:FufFile<CR>
+map fd <ESC>:FufDir<CR>
+map fb <ESC>:FufBuffer<CR>
+
+map ft <ESC>:FufTagWithCursorWord!<CR>
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -340,6 +372,7 @@ noremap <silent> <ESC>u	:noh<CR>
 
 runtime! ftplugin/man.vim
 noremap K		:Man <C-R>=expand("<cword>")<CR><CR>
+let g:ft_man_open_mode = 'vert'
 
 
 " Function
@@ -488,3 +521,4 @@ augroup Todo
 	au!
 	autocmd FileType vimwiki set syn=todo
 augroup END
+
