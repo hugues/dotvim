@@ -176,8 +176,10 @@ nmap <F4>   :windo set invrelativenumber<CR>
 
 "nmap <F6>	:setlocal foldcolumn-=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
 "nmap <F7>	:setlocal foldcolumn+=1<CR>:execute 'setlocal foldlevel='.(&foldcolumn - 2)<CR>
-nmap <F6>	:windo set foldcolumn-=1<CR>
-nmap <F7>	:windo set foldcolumn+=1<CR>
+"nmap <F6>	:windo set foldcolumn-=1<CR>
+"nmap <F7>	:windo set foldcolumn+=1<CR>
+nmap <F6>	:set textwidth-=1<CR>
+nmap <F7>	:set textwidth+=1<CR>
 " open all
 "nmap <F6>	zR
 " close all
@@ -271,9 +273,19 @@ call LoadTags()
 
 augroup WhiteSpaces
 	" F*cking whitespaces
-	autocmd BufRead * highlight ExtraWhitespace ctermbg=160 ctermfg=black guibg=red
-	autocmd BufRead * match     ExtraWhitespace /\s\+$\| \+\ze\t\| \+/
+	function! HighLightExtraSpacesAndColumns()
+		highlight ExtraWhitespace ctermbg=160 ctermfg=none guibg=red
+        match ExtraWhitespace /\s\+$\| \+\ze\t/
+		if &textwidth != 0
+			execute 'match ExtraWhitespace /\s\+$\| \+\ze\t\|\%>'.&textwidth.'v.\+/'
+		endif
+	endfunction
+	autocmd BufRead   *         call HighLightExtraSpacesAndColumns()
+	autocmd OptionSet textwidth call HighLightExtraSpacesAndColumns()
 augroup END
+
+set colorcolumn=+1
+hi colorcolumn ctermbg=none ctermfg=238 cterm=bold,underline
 
 set list listchars=tab:│ ,precedes:‥,extends:‥,nbsp:␣
 set fillchars=vert:│,stl:─,stlnc:─,fold:-,diff:x
