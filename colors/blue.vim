@@ -577,13 +577,13 @@ if has("gui_running") || &t_Co >= 255
 "helpExampleStart xxx links to helpIgnore
 "Subtitle       xxx links to Identifier
 
-	hi! CursorLine		ctermbg=00 cterm=none
+	hi! CursorLine		ctermbg=236 cterm=none
 	hi! CursorColumn	ctermbg=236 cterm=none
 
 
 	hi!			Comment			ctermfg=240					cterm=bold
 	hi!			ColorColumn		ctermfg=234	ctermbg=none
-	hi!			Constant		ctermfg=25					cterm=bold
+	hi!			Constant		ctermfg=27					cterm=bold
 	hi!			Number			ctermfg=27	ctermbg=none	cterm=bold
 	hi!			String			ctermfg=39	ctermbg=24		cterm=none
 	hi!			Identifier		ctermfg=33					cterm=bold
@@ -646,10 +646,10 @@ if has("gui_running") || &t_Co >= 255
 
 	hi! MatchParen	ctermfg=03	ctermbg=none	cterm=bold
 
-	hi! DiffAdd		term=bold			ctermfg=none	cterm=none	ctermbg=30
+	hi! DiffAdd		term=bold			ctermfg=none	cterm=none	ctermbg=20
 	hi! DiffChange	term=bold			ctermfg=none	cterm=none	ctermbg=none
-	hi! DiffDelete	term=reverse		ctermfg=30		cterm=none	ctermbg=none
-	hi! DiffText	term=none			ctermfg=none	cterm=none	ctermbg=21
+	hi! DiffDelete	term=reverse		ctermfg=18		cterm=none	ctermbg=none
+	hi! DiffText	term=none			ctermfg=none	cterm=none	ctermbg=20
 
 	hi! StatusLineCMD		term=reverse,bold		ctermfg=12	ctermbg=none		cterm=bold
 	hi! StatusLineINS		term=reverse,bold		ctermfg=46	ctermbg=none		cterm=bold
