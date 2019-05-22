@@ -29,7 +29,7 @@ set ruler
 "Show line numbers
 set number
 set laststatus=2
-set rnu "use relative line numbers to cursor
+"set rnu "use relative line numbers to cursor
 
 function! MyTabLine()
   let s = ''
