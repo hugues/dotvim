@@ -32,26 +32,26 @@ set laststatus=2
 "set rnu "use relative line numbers to cursor
 
 function! MyTabLine()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    " select the highlighting
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T'
-    " the label is made by MyTabLabel()
-    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-  endfor
-  " after the last tab fill with TabLineFill and reset tab page nr
-  let s .= '%#TabLineFill#%T'
-  " right-align the label to close the current tab page
-  "if tabpagenr('$') > 1
-  "  let s .= '%=%#TabLine#%999Xclose'
-  "endif
-  return s
+	let s = ''
+	for i in range(tabpagenr('$'))
+	" select the highlighting
+	if i + 1 == tabpagenr()
+		let s .= '%#TabLineSel#'
+	else
+		let s .= '%#TabLine#'
+	endif
+	" set the tab page number (for mouse clicks)
+	let s .= '%' . (i + 1) . 'T'
+	" the label is made by MyTabLabel()
+	let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+	endfor
+	" after the last tab fill with TabLineFill and reset tab page nr
+	let s .= '%#TabLineFill#%T'
+	" right-align the label to close the current tab page
+	"if tabpagenr('$') > 1
+	"  let s .= '%=%#TabLine#%999Xclose'
+	"endif
+	return s
 endfunction
 
 function! MyTabLabel(n)
@@ -62,12 +62,12 @@ endfunction
 
 " Show current C function name
 fun! ShowFuncName()
-  let lnum = line(".")
-  let col = col(".")
-  echohl ModeMsg
-  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bWn'))
-  echohl None
-  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+	let lnum = line(".")
+	let col = col(".")
+	echohl ModeMsg
+	echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bWn'))
+	echohl None
+	call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
 
 "set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
@@ -305,9 +305,14 @@ set mouse=a
 set mousem=extend
 
 set tabstop=4
+set softtabstop=0
 set shiftwidth=4
-set expandtab
-let g:detectindent_preferred_expandtab = 1
+set noexpandtab
+set copyindent
+set nopreserveindent
+set smarttab
+
+let g:detectindent_preferred_expandtab = 0
 let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 1
 augroup DetectIndentation
@@ -328,21 +333,19 @@ xnoremap <silent> //    <ESC>`>o#endif<ESC>`<O#if 0<ESC>
 xnoremap <silent> /*    <ESC>`>a */<ESC>`<i/* <ESC>
  noremap <silent> \*    m"e?/\* <CR>xxx/ \*\/<CR>xxx:nohl<CR>jg`"3h
  noremap <silent> \\    m"0:s:// *::\|:nohl<CR>g`"3h
-
-
  noremap <silent> /<CR> :NERDTreeToggle<CR>
 
 " You can use other keymappings like <C-l> instead of <CR> if you want to
 " use these mappings as default search and somtimes want to move cursor with
 " EasyMotion.
 function! s:incsearch_config(...) abort
-  return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {
-  \     "\<C-l>": '<Over>(easymotion)'
-  \   },
-  \   'is_expr': 0
-  \ }), get(a:, 1, {}))
+	return incsearch#util#deepextend(deepcopy({
+		\   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+		\   'keymap': {
+			\   "\<C-l>": '<Over>(easymotion)'
+		\   },
+		\   'is_expr': 0
+	\ }), get(a:, 1, {}))
 endfunction
 
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
@@ -474,20 +477,20 @@ augroup END
 
 noremap zc	z=1<CR><CR>
 
-function! SetLocalTabs(tabsize)
-	execute 'setlocal tabstop=' . a:tabsize
-	execute 'setlocal softtabstop=' . a:tabsize
-	execute 'setlocal shiftwidth=' . a:tabsize
-	setlocal smarttab
-	setlocal expandtab
-endfunction
+"function! SetPythonTabs(tabsize)
+"	execute 'setlocal tabstop=' . a:tabsize
+"	execute 'setlocal softtabstop=' . a:tabsize
+"	execute 'setlocal shiftwidth=' . a:tabsize
+"	setlocal smarttab
+"	setlocal expandtab
+"endfunction
 
 ""
 "" DafUq ?
 ""--------
 "augroup Tabs
 "	au!
-"	autocmd FileType python execute SetLocalTabs(4)
+"	autocmd FileType python execute SetPythonTabs(4)
 "augroup END
 "
 
@@ -512,21 +515,21 @@ noremap ,, <Esc>:call VimFootnotes()<CR>
 noremap ,. <Esc>:exe b:pos<CR>
 
 function! VimFootnotes()
-  if exists("b:vimfootnotenumber")
-    let b:vimfootnotenumber = b:vimfootnotenumber + 1
-    let cr = ""
-  else
-    let b:vimfootnotenumber = 1
-    let cr = "\<CR>"
-  endif
-  let b:pos = line('.').' | normal! '.virtcol('.').'|'.'4l'
-  exe "normal a[".b:vimfootnotenumber."]\<Esc>G"
-  if search("-- $", "b")
-    exe "normal O".cr."[".b:vimfootnotenumber."] "
-  else
-    exe "normal o".cr."[".b:vimfootnotenumber."] "
-  endif
-  startinsert!
+	if exists("b:vimfootnotenumber")
+		let b:vimfootnotenumber = b:vimfootnotenumber + 1
+		let cr = ""
+	else
+		let b:vimfootnotenumber = 1
+		let cr = "\<CR>"
+	endif
+	let b:pos = line('.').' | normal! '.virtcol('.').'|'.'4l'
+	exe "normal a[".b:vimfootnotenumber."]\<Esc>G"
+	if search("-- $", "b")
+		exe "normal O".cr."[".b:vimfootnotenumber."] "
+	else
+		exe "normal o".cr."[".b:vimfootnotenumber."] "
+	endif
+	startinsert!
 endfunction
 
 augroup Todo
