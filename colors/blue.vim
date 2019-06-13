@@ -656,7 +656,16 @@ if has("gui_running") || &t_Co >= 255
 	hi! link StatusLine StatusLineCMD
 	au InsertLeave * hi! link StatusLine StatusLineCMD
 	au InsertEnter * hi! link StatusLine StatusLineINS
-	hi! User1			term=reverse,underline	ctermfg=39	ctermbg=none		cterm=none
+	hi! User1IN				term=reverse,underline	ctermfg=68	ctermbg=none		cterm=none
+	hi! User1OUT			term=reverse,underline	ctermfg=239	ctermbg=none		cterm=none
+    " This is tricky, but is needed for new windows...
+    hi! User1				term=reverse,underline	ctermfg=239	ctermbg=none		cterm=none
+	au BufEnter * hi! link User1 User1IN
+	au BufLeave * hi! link User1 User1IN
+	hi! User1CMD			term=reverse,underline	ctermfg=68	ctermbg=none		cterm=none
+	hi! User1INS			term=reverse,underline	ctermfg=40	ctermbg=none		cterm=bold
+	au InsertLeave * hi! link User1 User1CMD
+	au InsertEnter * hi! link User1 User1INS
 	hi! User2			term=bold				ctermfg=03	ctermbg=none		cterm=bold
 	hi! User3			term=bold				ctermfg=236	ctermbg=00			cterm=bold
 	hi! User4			term=bold				ctermfg=88	ctermbg=none		cterm=none
@@ -670,7 +679,7 @@ if has("gui_running") || &t_Co >= 255
 
 	hi!       TabLine		term=underline cterm=none,underline	ctermbg=none ctermfg=00
 	hi! link  TabLineFill	TabLine
-	hi!       TabLineSel	term=bold							ctermbg=88  ctermfg=171 cterm=bold
+	hi!       TabLineSel	term=bold							ctermbg=236  ctermfg=68 cterm=none
 
 	hi! SpellBad        term=reverse cterm=bold ctermbg=52 ctermfg=171
 	hi! SpellCap        term=reverse cterm=none ctermbg=none ctermfg=04
@@ -777,7 +786,10 @@ elseif &t_Co >= 88
 	hi! link StatusLine StatusLineCMD
 	au InsertLeave * hi! link StatusLine StatusLineCMD
 	au InsertEnter * hi! link StatusLine StatusLineINS
-	hi! User1			term=reverse,underline	ctermfg=04	ctermbg=none		cterm=bold
+	hi! User1CMD			term=reverse,underline	ctermfg=04	ctermbg=none		cterm=bold
+	hi! User1INS			term=reverse,underline	ctermfg=12	ctermbg=none		cterm=bold
+	au InsertLeave * hi! link User1 User1CMD
+	au InsertEnter * hi! link User1 User1INS
 	hi! User2			term=bold				ctermfg=03	ctermbg=none		cterm=bold
 	hi! User3			term=bold				ctermfg=80	ctermbg=00			cterm=bold
 	hi! User4			term=bold				ctermfg=32	ctermbg=none		cterm=none

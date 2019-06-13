@@ -71,7 +71,7 @@ fun! ShowFuncName()
 endfun
 
 "set statusline=%y─┤\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%4*%c%V%*├─┤%4*%l/%L%*├──┤%4*%P%*├─
-set statusline=┤%y\ %*%1*%<%f%*\ %2*%M%3*%r%*├%=┤%1*%v,%c%*├─┤%P%*├
+set statusline=┤\ %*%1*%<%f%*\ %2*%M%3*%r%*│%Y├%=┤%c%1*%V%*│%l%*%1*/%L%*│%1*%p%%%*├
 
 set tabline=%!MyTabLine()
 
